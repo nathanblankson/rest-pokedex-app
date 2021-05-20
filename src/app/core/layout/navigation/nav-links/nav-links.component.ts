@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { NavLinks } from '../../../config/nav-links.config';
+import { INavLink } from '../../../interfaces/nav-links.interface';
+
 @Component({
     selector: 'app-nav-links',
     templateUrl: './nav-links.component.html',
@@ -7,11 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavLinksComponent implements OnInit {
 
-    public fillerNav = [
-        '1',
-        '2',
-        '3'
-    ];
+    public navLinks: INavLink[] = NavLinks;
 
     constructor() { }
 
