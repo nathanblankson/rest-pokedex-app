@@ -13,7 +13,7 @@ import { Pokemon } from '../../models/pokemon.model';
 })
 export class PokemonService extends BaseHttp {
 
-    constructor(private http: HttpClient) {
+    constructor(protected http: HttpClient) {
         super();
     }
 
@@ -46,14 +46,14 @@ export class PokemonService extends BaseHttp {
             );
     }
 
-    getPokemonDataById(id: number): Observable<Pokemon.IPokemon> {
+    getPokemonDetailsById(id: number): Observable<Pokemon.IPokemon> {
         return this.http.get<Pokeapi.IPokemon>(`${PokeapiApiEndpoints.pokemon}/${id}`)
             .pipe(
                 map((pokemon: Pokeapi.IPokemon) => Pokemon.parsePokemonFromPokeapi(pokemon))
             );
     }
 
-    getPokemonDataByName(name: string): Observable<Pokemon.IPokemon> {
+    getPokemonDetailsByName(name: string): Observable<Pokemon.IPokemon> {
         const nameSent = name.toLowerCase();
         return this.http.get<Pokeapi.IPokemon>(`${PokeapiApiEndpoints.pokemon}/${nameSent}`)
             .pipe(
@@ -61,7 +61,7 @@ export class PokemonService extends BaseHttp {
             );
     }
 
-    private getAllPokemon(limit: number = 20, offset: number = 0): Observable<Pokeapi.INamedAPIResourceList> {
+    protected getAllPokemon(limit: number = 20, offset: number = 0): Observable<Pokeapi.INamedAPIResourceList> {
         const params: HttpParams = new HttpParams()
             .set('limit', limit.toString())
             .set('offset', offset.toString());
