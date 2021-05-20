@@ -9,6 +9,14 @@
 
     mat-sidenav {
         width: 80px;
+
+        img {
+            width: 100%;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
     }
 
     mat-sidenav-container {
