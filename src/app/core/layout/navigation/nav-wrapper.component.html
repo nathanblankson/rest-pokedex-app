@@ -1,0 +1,26 @@
+<div class="container">
+
+    <mat-sidenav-container>
+
+        <mat-sidenav [opened]="true" [mode]="'side'">
+
+            <!-- Logo -->
+
+            <!-- Top links -->
+            <app-nav-links></app-nav-links>
+
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+
+            <!-- Toolbar -->
+            <app-nav-toolbar></app-nav-toolbar>
+
+            <!-- Content -->
+            <ng-content></ng-content>
+
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+
+</div>

@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
+import { LayoutModule } from './core/layout/layout.module';
 
 @NgModule({
     imports: [
@@ -13,7 +14,8 @@ import { AppComponent } from './app.component';
         BrowserAnimationsModule,
         HttpClientModule,
         AppRoutingModule,
-        CoreModule
+        CoreModule,
+        LayoutModule
     ],
     declarations: [
         AppComponent
