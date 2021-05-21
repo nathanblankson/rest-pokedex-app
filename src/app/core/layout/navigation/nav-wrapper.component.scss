@@ -7,19 +7,26 @@
     left: 0;
     right: 0;
 
-    mat-sidenav {
-        width: 90px;
-
-        img {
-            width: 100%;
-
-            &:hover {
-                cursor: pointer;
-            }
-        }
-    }
-
     mat-sidenav-container {
         flex: 1;
+
+        mat-sidenav {
+            width: 90px;
+
+            .brand {
+                width: 100%;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .content {
+            position: absolute;
+            top: 64px;
+            bottom: 0;
+            width: 100%;
+        }
     }
 }

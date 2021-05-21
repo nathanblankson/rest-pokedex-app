@@ -5,7 +5,7 @@
         <mat-sidenav [opened]="true" [mode]="'side'">
 
             <!-- Logo -->
-            <img src="/assets/images/pokeball.svg" alt="Pokéball" routerLink="/">
+            <img class="brand" src="/assets/images/pokeball.svg" alt="Pokéball" routerLink="/">
 
             <!-- Top links -->
             <app-nav-links></app-nav-links>
@@ -18,7 +18,9 @@
             <app-nav-toolbar></app-nav-toolbar>
 
             <!-- Content -->
-            <ng-content></ng-content>
+            <div class="content">
+                <ng-content></ng-content>
+            </div>
 
         </mat-sidenav-content>
 
