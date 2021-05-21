@@ -11,24 +11,24 @@
         text-align: center;
         padding: 10px;
 
-        i {
-            font-size: 28px;
-            margin-bottom: 5px;
-        }
-
-        h4 {
-            font-size: 16px;
-        }
-
         &:hover {
             background-color: $boston-university-red;
             color: $white;
             cursor: pointer;
         }
-    }
 
-    .active {
-        background-color: $red;
-        color: $white;
+        &--active {
+            background-color: $red;
+            color: $white;
+        }
+
+        &__icon {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        &__name {
+            font-size: 16px;
+        }
     }
 }

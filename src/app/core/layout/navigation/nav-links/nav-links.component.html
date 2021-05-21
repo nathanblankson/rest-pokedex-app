@@ -1,10 +1,16 @@
 <mat-nav-list>
 
     <div class="nav-links">
-        <div class="nav-link" *ngFor="let navLink of navLinks" [routerLink]="navLink.urlLink" routerLinkActive="active">
-            <i [class]="navLink.iconClass"></i>
-            <h4>{{ navLink.name }}</h4>
+
+        <div
+            *ngFor="let navLink of navLinks"
+            class="nav-link"
+            routerLinkActive="nav-link--active"
+            [routerLink]="'/' + navLink.urlLink">
+            <i class="nav-link__icon" [ngClass]="navLink.iconClass"></i>
+            <h4 class="nav-link__name">{{ navLink.name }}</h4>
         </div>
+
     </div>
 
 </mat-nav-list>
