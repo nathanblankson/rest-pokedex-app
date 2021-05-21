@@ -1,0 +1,29 @@
+<div class="pokemon">
+
+    <h3 class="pokemon-id">{{ pokemon.id }}</h3>
+
+    <div class="pokemon__left">
+
+        <img class="pokemon-image" [src]="pokemon.image_url" [alt]="pokemon.name | titlecase">
+
+    </div>
+
+    <mat-divider [vertical]="true"></mat-divider>
+
+    <div class="pokemon__right">
+
+        <h3 class="pokemon-name">{{ pokemon.name | titlecase}}</h3>
+
+        <!-- Pokemon Types -->
+
+    </div>
+
+    <div class="pokemon__actions">
+
+        <i class="fas fa-heart"></i>
+
+        <i class="fas fa-star"></i>
+
+    </div>
+
+</div>
