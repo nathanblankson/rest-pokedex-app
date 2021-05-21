@@ -1,5 +1,10 @@
 export namespace Pokeapi {
 
+    export interface IPageParams {
+        limit?: string | number;
+        offset?: string | number;
+    }
+
     export interface IPokemon {
         abilities: IPokemonAbility[];
         base_experience: number;

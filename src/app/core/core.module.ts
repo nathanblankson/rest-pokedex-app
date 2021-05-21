@@ -1,11 +1,16 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 
 import { EnsureModuleLoadedOnceGuard } from './guards/ensure-module-loaded-once.guard';
+import { appState } from '../store';
 
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        NgxsModule.forRoot(appState),
+        NgxsReduxDevtoolsPluginModule.forRoot()
     ]
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {

@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { from, Observable } from 'rxjs';
-import { map, mergeMap, toArray } from 'rxjs/operators';
+import { from, merge, Observable } from 'rxjs';
+import { map, mergeMap, take, toArray } from 'rxjs/operators';
 
 import { BaseHttp } from '../abstract/base-http.class';
 import { Pokeapi } from '../../models/pokeapi.model';
@@ -11,11 +11,15 @@ import { Pokemon } from '../../models/pokemon.model';
 @Injectable({
     providedIn: 'root'
 })
-export class PokemonService extends BaseHttp {
+export class PokeapiService extends BaseHttp {
 
     constructor(protected http: HttpClient) {
         super();
     }
+
+    //#region
+
+    /*
 
     getAllPokemonDetails(limit: number = 20, offset: number = 0): Observable<Pokemon.IAllPokemonDetails> {
         return this.getAllPokemon(limit, offset)
@@ -45,27 +49,36 @@ export class PokemonService extends BaseHttp {
                 })
             );
     }
+    */
 
-    getPokemonDetailsById(id: number): Observable<Pokemon.IPokemon> {
-        return this.http.get<Pokeapi.IPokemon>(`${PokeapiApiEndpoints.pokemon}/${id}`)
-            .pipe(
-                map((pokemon: Pokeapi.IPokemon) => Pokemon.parsePokemonFromPokeapi(pokemon))
-            );
+    //#endregion
+
+    public getPokemonListDetails(pageParams: Pokeapi.IPageParams): Observable<Pokeapi.IPokemon[]> {
+        return this.getPokemonList(pageParams).pipe(
+            mergeMap((response: Pokeapi.INamedAPIResourceList) => {
+                return from(response.results).pipe(
+                    mergeMap((result: Pokeapi.INamedApiResource) => {
+                        return this.getPokemonDetails(result.url).pipe(
+                            map((pokemon: Pokeapi.IPokemon) => pokemon)
+                        )
+                    }),
+                    toArray()
+                )
+            })
+        );
     }
 
-    getPokemonDetailsByName(name: string): Observable<Pokemon.IPokemon> {
-        const nameSent = name.toLowerCase();
-        return this.http.get<Pokeapi.IPokemon>(`${PokeapiApiEndpoints.pokemon}/${nameSent}`)
-            .pipe(
-                map((pokemon: Pokeapi.IPokemon) => Pokemon.parsePokemonFromPokeapi(pokemon))
-            );
-    }
-
-    protected getAllPokemon(limit: number = 20, offset: number = 0): Observable<Pokeapi.INamedAPIResourceList> {
+    private getPokemonList(pageParams: Pokeapi.IPageParams): Observable<Pokeapi.INamedAPIResourceList> {
+        const limit = pageParams.limit || 10;
+        const offset = pageParams.offset || 0;
         const params: HttpParams = new HttpParams()
             .set('limit', limit.toString())
             .set('offset', offset.toString());
         return this.http.get<Pokeapi.INamedAPIResourceList>(PokeapiApiEndpoints.pokemon, { params });
+    }
+
+    private getPokemonDetails(url: string): Observable<Pokeapi.IPokemon> {
+        return this.http.get<Pokeapi.IPokemon>(url);
     }
 
 }
