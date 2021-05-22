@@ -34,7 +34,7 @@ export namespace Pokeapi {
     export interface INamedAPIResourceList {
         count: number;
         next: string;
-        previous: null;
+        previous: string | null;
         results: INamedApiResource[];
     }
 
@@ -93,13 +93,13 @@ export namespace Pokeapi {
 
     export interface IPokemonSprites {
         back_default: string;
-        back_female: null;
+        back_female: string;
         back_shiny: string;
-        back_shiny_female: null;
+        back_shiny_female: string;
         front_default: string;
-        front_female: null;
+        front_female: string;
         front_shiny: string;
-        front_shiny_female: null;
+        front_shiny_female: string;
         other?: IOther;
         versions?: IVersions;
         animated?: IPokemonSprites;
@@ -143,9 +143,9 @@ export namespace Pokeapi {
 
     export interface IGenerationVi {
         front_default: string;
-        front_female: null;
+        front_female: string;
         front_shiny: string;
-        front_shiny_female: null;
+        front_shiny_female: string;
     }
 
     export interface IGenerationVii {
@@ -155,7 +155,7 @@ export namespace Pokeapi {
 
     export interface IDreamWorld {
         front_default: string;
-        front_female: null;
+        front_female: string;
     }
 
     export interface IGenerationViii {
