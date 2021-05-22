@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
+import { Pokeapi } from '../../../core/models/pokeapi.model';
 
 import { GetPokemonListDetails } from '../../../store';
 

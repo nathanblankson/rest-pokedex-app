@@ -8,6 +8,7 @@ import { LayoutModule } from '../core/layout/layout.module';
 import { PokemonComponent } from './pages/pokemon/pokemon.component';
 import { PokemonListItemComponent } from './components/pokemon-list-item/pokemon-list-item.component';
 import { PokemonTypePillComponent } from './components/pokemon-type-pill/pokemon-type-pill.component';
+import { PokemonStatBarComponent } from './components/pokemon-stat-bar/pokemon-stat-bar.component';
 
 @NgModule({
     imports: [
@@ -17,6 +18,11 @@ import { PokemonTypePillComponent } from './components/pokemon-type-pill/pokemon
         PokemonRoutingModule,
         LayoutModule
     ],
-    declarations: [PokemonComponent, PokemonListItemComponent, PokemonTypePillComponent]
+    declarations: [
+        PokemonComponent,
+        PokemonListItemComponent,
+        PokemonTypePillComponent,
+        PokemonStatBarComponent
+    ]
 })
 export class PokemonModule { }
