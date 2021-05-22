@@ -14,14 +14,6 @@ export class PokemonTypePillComponent implements OnInit {
 
     constructor() { }
 
-    ngOnInit(): void {
-        this.type = {
-            slot: 1,
-            type: {
-                name: "grass",
-                url: "https://pokeapi.co/api/v2/type/12/"
-            }
-        }
-    }
+    ngOnInit(): void { }
 
 }
