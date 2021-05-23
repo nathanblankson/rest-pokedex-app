@@ -12,4 +12,3 @@ export const PokeapiApiEndpoints: IPokeapiApiEndpoints = {
     // POKEMON
     pokemon: `${base}/pokemon`
 };
-

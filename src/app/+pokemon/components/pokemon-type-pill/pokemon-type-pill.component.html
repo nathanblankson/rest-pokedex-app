@@ -5,12 +5,10 @@
         [ngClass]="'pill--' + type.type.name"
         (mouseover)="typeEffectivenessShown=true"
         (mouseout)="typeEffectivenessShown=false">
-
         {{ type.type.name | titlecase }}
-
     </div>
 
-    <div class="popup" *ngIf="typeEffectivenessShown === false">
+    <div class="popup" *ngIf="typeEffectivenessShown">
 
         <div class="header">
             <img
@@ -22,21 +20,23 @@
         </div>
 
         <div class="effectiveness">
-
             <div class="strong">
                 <p>Strong vs.</p>
-                <div class="pill pill--normal">
-                    Normal
+                <div *ngFor="let strong of typeEffectiveness.strongVs" class="pill" [ngClass]="'pill--' + strong">
+                    {{ strong | titlecase}}
                 </div>
             </div>
 
+            <mat-divider [vertical]="true"></mat-divider>
+
             <div class="weak">
                 <p>Weak vs.</p>
+                <div *ngFor="let weak of typeEffectiveness.weakVs" class="pill" [ngClass]="'pill--' + weak">
+                    {{ weak | titlecase }}
+                </div>
             </div>
-
         </div>
 
     </div>
-
 
 </div>
