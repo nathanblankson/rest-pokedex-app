@@ -1,5 +1,42 @@
-<div class="pokemon-type" [ngClass]="'pokemon-type--' + type.type.name">
+<div class="pokemon-type">
 
-    {{ type.type.name | titlecase }}
+    <div
+        class="pill"
+        [ngClass]="'pill--' + type.type.name"
+        (mouseover)="typeEffectivenessShown=true"
+        (mouseout)="typeEffectivenessShown=false">
+
+        {{ type.type.name | titlecase }}
+
+    </div>
+
+    <div class="popup" *ngIf="typeEffectivenessShown === false">
+
+        <div class="header">
+            <img
+                class="type-icon"
+                [ngClass]="'type-icon--' + type.type.name"
+                [src]="'assets/images/pokemon-type-icons/' + type.type.name + '.svg'"
+                [alt]="'Pokémon Type: ' + type.type.name">
+            <span>{{ type.type.name | titlecase }} Pokémon</span>
+        </div>
+
+        <div class="effectiveness">
+
+            <div class="strong">
+                <p>Strong vs.</p>
+                <div class="pill pill--normal">
+                    Normal
+                </div>
+            </div>
+
+            <div class="weak">
+                <p>Weak vs.</p>
+            </div>
+
+        </div>
+
+    </div>
+
 
 </div>

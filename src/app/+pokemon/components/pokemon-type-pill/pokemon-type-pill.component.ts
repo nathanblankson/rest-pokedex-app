@@ -10,10 +10,15 @@ import { Pokeapi } from '../../../core/models/pokeapi.model';
 export class PokemonTypePillComponent implements OnInit {
 
     @Input()
-    type: Pokeapi.IPokemonType;
+    public type: Pokeapi.IPokemonType;
+
+    @Input()
+    public showTypeEffectiveness: boolean = false;
+
+    public typeEffectivenessShown: boolean = false;
 
     constructor() { }
 
-    ngOnInit(): void { }
+    public ngOnInit(): void { }
 
 }

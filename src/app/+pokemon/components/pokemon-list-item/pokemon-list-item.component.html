@@ -19,7 +19,8 @@
         </div>
 
         <div class="pokemon-types">
-            <app-pokemon-type-pill *ngFor="let type of pokemon.types" [type]="type"></app-pokemon-type-pill>
+            <app-pokemon-type-pill *ngFor="let type of pokemon.types" [type]="type" [showTypeEffectiveness]="true">
+            </app-pokemon-type-pill>
         </div>
 
     </div>
