@@ -5,19 +5,18 @@
     flex-direction: row;
     position: relative;
     height: 150px;
-    min-width: 300px;
     padding: 20px;
     background-color: $white;
     box-shadow: 0 1px 5px rgb(0 0 0 / 10%);
 
-    .pokemon-id {
-        position: absolute;
-        font-size: 20px;
-    }
-
     &:hover {
         background-color: $boston-university-red;
         cursor: pointer;
+    }
+
+    &__id {
+        position: absolute;
+        font-size: 20px;
     }
 
     &__left {
@@ -26,7 +25,7 @@
         align-items: center;
         width: 100px;
 
-        .pokemon-image {
+        .image {
             width: 100%;
         }
     }
@@ -41,11 +40,11 @@
         justify-content: space-between;
         padding: 10px;
 
-        .pokemon-name {
+        .name {
             font-size: 20px;
         }
 
-        .pokemon-types {
+        .types {
             display: flex;
             flex-direction: row;
             gap: 5px;
