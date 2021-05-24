@@ -1,17 +1,17 @@
 @import 'colors';
 
-.pokemon-stat {
+.stat {
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 300px;
     font-size: 14px;
 
-    .stat-name, .stat-value {
+    &__name, &__value {
         flex: 1;
     }
 
-    .stat-bar {
+    &__bar {
         flex: 2;
         height: 7px;
         margin: 0 20px 0 10px;

@@ -1,10 +1,10 @@
-<div class="pokemon-stat">
-    <span class="stat-name">{{ stat.stat.name | uppercase }}</span>
+<div class="stat">
+    <span class="stat__name">{{ stat.stat.name | uppercase }}</span>
     <mat-progress-bar
-        class="stat-bar"
+        class="stat__bar"
         mode="determinate"
-        [ngClass]="'stat-bar--' + stat.stat.name"
+        [ngClass]="'stat__bar--' + stat.stat.name"
         [value]="stat.base_stat">
     </mat-progress-bar>
-    <span class="stat-value">{{ stat.base_stat }}</span>
+    <span class="stat__value">{{ stat.base_stat }}</span>
 </div>
