@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ConnectionPositionPair } from '@angular/cdk/overlay';
 
 import { Pokeapi } from '../../../core/models/pokeapi.model';
 import { pokemonTypeEffectiveness, typeEffectiveness } from '../../../core/config/pokemon-types.config';
+
 @Component({
     selector: 'app-pokemon-type-pill',
     templateUrl: './pokemon-type-pill.component.html',
@@ -17,6 +19,20 @@ export class PokemonTypePillComponent implements OnInit {
 
     public typeEffectivenessShown: boolean = false;
     public typeEffectiveness: typeEffectiveness;
+    public overlayPositions = [
+        new ConnectionPositionPair(
+            { originX: 'center', originY: 'bottom' },
+            { overlayX: 'center', overlayY: 'top', },
+            0,
+            5
+        ),
+        new ConnectionPositionPair(
+            { originX: 'center', originY: 'top' },
+            { overlayX: 'center', overlayY: 'bottom', },
+            0,
+            -5
+        )
+    ];
 
     constructor() { }
 

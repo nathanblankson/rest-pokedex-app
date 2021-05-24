@@ -1,15 +1,18 @@
-<div class="pokemon-type">
-
-    <div
-        class="pill"
-        [ngClass]="'pill--' + type.type.name"
-        (mouseover)="typeEffectivenessShown=true"
-        (mouseout)="typeEffectivenessShown=false">
-        {{ type.type.name | titlecase }}
-    </div>
-
-    <div class="popup" *ngIf="typeEffectivenessShown">
-
+<div
+    #originOverlay="cdkOverlayOrigin"
+    class="pill"
+    cdkOverlayOrigin
+    [ngClass]="'pill--' + type.type.name"
+    (mouseover)="typeEffectivenessShown=true"
+    (mouseout)="typeEffectivenessShown=false">
+    {{ type.type.name | titlecase }}
+</div>
+<ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOrigin]="originOverlay"
+    [cdkConnectedOverlayOpen]="typeEffectivenessShown"
+    [cdkConnectedOverlayPositions]="overlayPositions">
+    <div class="popup">
         <div class="header">
             <img
                 class="type-icon"
@@ -36,7 +39,5 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-</div>
+</ng-template>

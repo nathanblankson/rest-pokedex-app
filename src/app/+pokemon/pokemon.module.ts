@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
@@ -13,6 +14,7 @@ import { PokemonStatBarComponent } from './components/pokemon-stat-bar/pokemon-s
 @NgModule({
     imports: [
         CommonModule,
+        OverlayModule,
         MatDividerModule,
         MatProgressBarModule,
         PokemonRoutingModule,

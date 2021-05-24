@@ -1,245 +1,240 @@
 @import 'colors';
 
-.pokemon-type {
-    position: relative;
+.pill, .popup {
     font-size: 12px;
+}
 
-    .pill {
-        padding: 8px 12px;
-        border-radius: 5px;
-        color: $white;
-        font-weight: 600;
-        text-shadow:  1px 1px rgb(0 0 0 / 80%);
+.pill {
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: $white;
+    font-weight: 600;
+    text-shadow:  1px 1px rgb(0 0 0 / 80%);
 
-        &:hover {
-            cursor: default;
-        }
+    &:hover {
+        cursor: default;
+    }
 
-        &--normal{
-            background-color: $normal;
-        }
+    &--normal{
+        background-color: $normal;
+    }
 
-        &--fire{
-            background-color: $fire;
-        }
+    &--fire{
+        background-color: $fire;
+    }
 
-        &--water{
-            background-color: $water;
-        }
+    &--water{
+        background-color: $water;
+    }
 
-        &--electric{
-            background-color: $electric;
-        }
+    &--electric{
+        background-color: $electric;
+    }
 
-        &--grass{
+    &--grass{
+        background-color: $grass;
+    }
+
+    &--ice{
+        background-color: $ice;
+    }
+
+    &--fighting{
+        background-color: $fighting;
+    }
+
+    &--poison{
+        background-color: $poison;
+    }
+
+    &--ground{
+        background-color: $ground;
+    }
+
+    &--flying{
+        background-color: $flying;
+    }
+
+    &--psychic{
+        background-color: $psychic;
+    }
+
+    &--bug{
+        background-color: $bug;
+    }
+
+    &--rock{
+        background-color: $rock;
+    }
+
+    &--ghost{
+        background-color: $ghost;
+    }
+
+    &--dragon{
+        background-color: $dragon;
+    }
+
+    &--dark{
+        background-color: $dark;
+    }
+
+    &--steel{
+        background-color: $steel;
+    }
+
+    &--fairy{
+        background-color: $fairy;
+    }
+}
+
+.popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    background-color: $white;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgb(0 0 0 / 30%);
+    font-weight: bold;
+    overflow: hidden;
+    z-index: 999;
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 5px 0;
+        background-color: rgb(0 0 0 / 5%);
+        border-bottom: 1px solid lightgray;
+
+        .type-icon {
+            width: 13px;
+            margin-right: 5px;
             background-color: $grass;
-        }
+            border-radius: 50%;
 
-        &--ice{
-            background-color: $ice;
-        }
+            &--normal{
+                background-color: $normal;
+                border: 3px solid $normal;
+            }
 
-        &--fighting{
-            background-color: $fighting;
-        }
+            &--fire{
+                background-color: $fire;
+                border: 3px solid $fire;
+            }
 
-        &--poison{
-            background-color: $poison;
-        }
+            &--water{
+                background-color: $water;
+                border: 3px solid $water;
+            }
 
-        &--ground{
-            background-color: $ground;
-        }
+            &--electric{
+                background-color: $electric;
+                border: 3px solid $electric;
+            }
 
-        &--flying{
-            background-color: $flying;
-        }
+            &--grass{
+                background-color: $grass;
+                border: 3px solid $grass;
+            }
 
-        &--psychic{
-            background-color: $psychic;
-        }
+            &--ice{
+                background-color: $ice;
+                border: 3px solid $ice;
+            }
 
-        &--bug{
-            background-color: $bug;
-        }
+            &--fighting{
+                background-color: $fighting;
+                border: 3px solid $fighting;
+            }
 
-        &--rock{
-            background-color: $rock;
-        }
+            &--poison{
+                background-color: $poison;
+                border: 3px solid $poison;
+            }
 
-        &--ghost{
-            background-color: $ghost;
-        }
+            &--ground{
+                background-color: $ground;
+                border: 3px solid $ground;
+            }
 
-        &--dragon{
-            background-color: $dragon;
-        }
+            &--flying{
+                background-color: $flying;
+                border: 3px solid $flying;
+            }
 
-        &--dark{
-            background-color: $dark;
-        }
+            &--psychic{
+                background-color: $psychic;
+                border: 3px solid $psychic;
+            }
 
-        &--steel{
-            background-color: $steel;
-        }
+            &--bug{
+                background-color: $bug;
+                border: 3px solid $bug;
+            }
 
-        &--fairy{
-            background-color: $fairy;
+            &--rock{
+                background-color: $rock;
+                border: 3px solid $rock;
+            }
+
+            &--ghost{
+                background-color: $ghost;
+                border: 3px solid $ghost;
+            }
+
+            &--dragon{
+                background-color: $dragon;
+                border: 3px solid $dragon;
+            }
+
+            &--dark{
+                background-color: $dark;
+                border: 3px solid $dark;
+            }
+
+            &--steel{
+                background-color: $steel;
+                border: 3px solid $steel;
+            }
+
+            &--fairy{
+                background-color: $fairy;
+                border: 3px solid $fairy;
+            }
         }
     }
 
-    .popup {
+    .effectiveness {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        margin-top: 5px;
-        width: 300px;
-        background-color: $white;
-        border-radius: 5px;
-        box-shadow: 0 1px 5px rgb(0 0 0 / 30%);
-        font-weight: bold;
-        overflow: hidden;
-        z-index: 999;
+        flex-direction: row;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        padding: 10px 5px 5px;
 
-        .header {
+        .strong, .weak {
             display: flex;
-            flex-direction: row;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            width: 100%;
-            padding: 5px 0;
-            background-color: rgb(0 0 0 / 5%);
-            border-bottom: 1px solid lightgray;
+            gap: 2px;
+            width: 50%;
+            height: 100%;
 
-            .type-icon {
-                width: 13px;
-                margin-right: 5px;
-                background-color: $grass;
-                border-radius: 50%;
-
-                &--normal{
-                    background-color: $normal;
-                    border: 3px solid $normal;
-                }
-
-                &--fire{
-                    background-color: $fire;
-                    border: 3px solid $fire;
-                }
-
-                &--water{
-                    background-color: $water;
-                    border: 3px solid $water;
-                }
-
-                &--electric{
-                    background-color: $electric;
-                    border: 3px solid $electric;
-                }
-
-                &--grass{
-                    background-color: $grass;
-                    border: 3px solid $grass;
-                }
-
-                &--ice{
-                    background-color: $ice;
-                    border: 3px solid $ice;
-                }
-
-                &--fighting{
-                    background-color: $fighting;
-                    border: 3px solid $fighting;
-                }
-
-                &--poison{
-                    background-color: $poison;
-                    border: 3px solid $poison;
-                }
-
-                &--ground{
-                    background-color: $ground;
-                    border: 3px solid $ground;
-                }
-
-                &--flying{
-                    background-color: $flying;
-                    border: 3px solid $flying;
-                }
-
-                &--psychic{
-                    background-color: $psychic;
-                    border: 3px solid $psychic;
-                }
-
-                &--bug{
-                    background-color: $bug;
-                    border: 3px solid $bug;
-                }
-
-                &--rock{
-                    background-color: $rock;
-                    border: 3px solid $rock;
-                }
-
-                &--ghost{
-                    background-color: $ghost;
-                    border: 3px solid $ghost;
-                }
-
-                &--dragon{
-                    background-color: $dragon;
-                    border: 3px solid $dragon;
-                }
-
-                &--dark{
-                    background-color: $dark;
-                    border: 3px solid $dark;
-                }
-
-                &--steel{
-                    background-color: $steel;
-                    border: 3px solid $steel;
-                }
-
-                &--fairy{
-                    background-color: $fairy;
-                    border: 3px solid $fairy;
-                }
+            p {
+                margin-bottom: 5px;
             }
         }
 
-        .effectiveness {
-            display: flex;
-            flex-direction: row;
-            text-align: center;
-            width: 100%;
-            height: 100%;
-            padding: 10px 5px 5px;
+        .strong {
+            color: $grass;
+        }
 
-            .strong, .weak {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 2px;
-                width: 50%;
-                height: 100%;
-
-                p {
-                    margin-bottom: 5px;
-                }
-            }
-
-            .strong {
-                color: $grass;
-            }
-
-            .weak {
-                color: $fighting;
-            }
+        .weak {
+            color: $fighting;
         }
     }
 }
