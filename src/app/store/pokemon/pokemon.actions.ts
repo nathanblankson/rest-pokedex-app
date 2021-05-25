@@ -1,4 +1,5 @@
 import { Pokeapi } from "../../core/models/pokeapi.model";
+import { Pokemon } from "../../core/models/pokemon.model";
 
 export class GetPokemonListDetails {
     public static readonly type: string = '[ Pokemon ] Get Pokemon List Details';
@@ -7,7 +8,7 @@ export class GetPokemonListDetails {
 
 export class GetPokemonListDetailsSuccess {
     public static readonly type: string = '[ Pokemon ] Get Pokemon List Details Success';
-    constructor(public payload: Pokeapi.IPokemon[]) { }
+    constructor(public payload: Pokemon.IAllPokemonDetails) { }
 }
 
 export class GetPokemonListDetailsFail {

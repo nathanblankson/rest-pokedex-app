@@ -14,10 +14,14 @@ export namespace Pokemon {
         image_url: string;
     }
 
-    export interface IAllPokemonDetails {
+    export interface IMeta {
         count: number | null;
         next: string | null;
         previous: string | null;
+    }
+
+    export interface IAllPokemonDetails {
+        meta: IMeta;
         pokemons: IPokemon[] | null;
     }
 

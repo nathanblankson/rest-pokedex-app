@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import { catchError, tap } from 'rxjs/operators';
-import { Pokeapi } from '../../core/models/pokeapi.model';
 
+import { Pokeapi } from '../../core/models/pokeapi.model';
+import { Pokemon } from '../../core/models/pokemon.model';
 import { PokeapiService } from '../../core/services/pokeapi/pokeapi.service';
 import { defaultPokemonState, IPokemonStateModel } from './pokemon-state.model';
 import { GetPokemonListDetails, GetPokemonListDetailsFail, GetPokemonListDetailsSuccess } from './pokemon.actions';
@@ -22,8 +23,8 @@ export class PokemonState {
         { payload }: GetPokemonListDetails
     ) {
         return this.pokeapiService.getPokemonListDetails(payload).pipe(
-            tap((pokemons: Pokeapi.IPokemon[]) => {
-                dispatch(new GetPokemonListDetailsSuccess(pokemons));
+            tap((result: Pokemon.IAllPokemonDetails) => {
+                dispatch(new GetPokemonListDetailsSuccess(result));
             }),
             catchError(() => dispatch(new GetPokemonListDetailsFail({ error: 'Ooops! Looks like something went wrong...' })))
         )
@@ -34,8 +35,11 @@ export class PokemonState {
         { patchState }: StateContext<IPokemonStateModel>,
         { payload }: GetPokemonListDetailsSuccess
     ): void {
+        console.log('==PAYLOAD SUCCESS');
+        console.log(payload);
         patchState({
-            pokemon: payload
+            meta: payload.meta,
+            pokemons: payload.pokemons
         });
     }
 

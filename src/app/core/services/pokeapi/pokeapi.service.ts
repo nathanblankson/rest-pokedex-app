@@ -17,12 +17,8 @@ export class PokeapiService extends BaseHttp {
         super();
     }
 
-    //#region
-
-    /*
-
-    getAllPokemonDetails(limit: number = 20, offset: number = 0): Observable<Pokemon.IAllPokemonDetails> {
-        return this.getAllPokemon(limit, offset)
+    public getPokemonListDetails(pageParams: Pokeapi.IPageParams): Observable<Pokemon.IAllPokemonDetails> {
+        return this.getPokemonList(pageParams)
             .pipe(
                 mergeMap((response: Pokeapi.INamedAPIResourceList) => {
                     // Get the pokemon details for each result
@@ -33,47 +29,34 @@ export class PokeapiService extends BaseHttp {
                                 map((pokemon: Pokeapi.IPokemon) => {
                                     return Pokemon.parsePokemonFromPokeapi(pokemon) // attaches the image url from bastionbot
                                 })
-                            )
+                            );
                         }),
                         toArray(),
-                        map((pokemons) => {
+                        map((pokemons: Pokemon.IPokemon[]) => {
+                            // Sort pokemon by ID
+                            pokemons.sort((a: Pokemon.IPokemon, b: Pokemon.IPokemon) => {
+                                return (a.id < b.id) ? -1 : (a.id > b.id) ? 1 : 0;
+                            });
+
                             // Return pokemon details along with pagination information
                             return {
-                                count: response.count,
-                                next: response.next,
-                                previous: response.previous,
+                                meta: {
+                                    count: response.count,
+                                    next: response.next,
+                                    previous: response.previous
+                                },
                                 pokemons
                             }
                         })
                     );
-                })
+                }),
             );
     }
-    */
 
-    //#endregion
-
-    public getPokemonListDetails(pageParams: Pokeapi.IPageParams): Observable<Pokeapi.IPokemon[]> {
-        return this.getPokemonList(pageParams).pipe(
-            mergeMap((response: Pokeapi.INamedAPIResourceList) => {
-                return from(response.results).pipe(
-                    mergeMap((result: Pokeapi.INamedApiResource) => {
-                        return this.getPokemonDetails(result.url).pipe(
-                            map((pokemon: Pokeapi.IPokemon) => pokemon)
-                        )
-                    }),
-                    toArray()
-                )
-            })
-        );
-    }
-
-    private getPokemonList(pageParams: Pokeapi.IPageParams): Observable<Pokeapi.INamedAPIResourceList> {
-        const limit = pageParams.limit || 10;
-        const offset = pageParams.offset || 0;
+    private getPokemonList(pageParams: Pokeapi.IPageParams = { limit: 5, offset: 0 }): Observable<Pokeapi.INamedAPIResourceList> {
         const params: HttpParams = new HttpParams()
-            .set('limit', limit.toString())
-            .set('offset', offset.toString());
+            .set('limit', String(pageParams.limit))
+            .set('offset', String(pageParams.offset));
         return this.http.get<Pokeapi.INamedAPIResourceList>(PokeapiApiEndpoints.pokemon, { params });
     }
 

@@ -1,16 +1,21 @@
 <app-nav-wrapper>
 
-    <div class="container">
+    <div *ngIf="allPokemonData$ | async as allPokemonData" class="container">
 
         <!-- Search -->
 
         <!-- Filters? -->
 
         <div class="pokemon-list">
-            <app-pokemon-list-item *ngFor="let pokemon of pokemons" [pokemon]="pokemon"></app-pokemon-list-item>
+            <app-pokemon-list-item *ngFor="let pokemon of allPokemonData?.pokemons"
+                [pokemon]="pokemon">
+            </app-pokemon-list-item>
         </div>
 
         <!-- Pagination -->
+        <div>
+            {{ allPokemonData?.count }}
+        </div>
 
     </div>
 

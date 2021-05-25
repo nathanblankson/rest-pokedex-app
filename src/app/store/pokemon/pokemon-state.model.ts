@@ -1,9 +1,11 @@
-import { Pokeapi } from "../../core/models/pokeapi.model";
+import { Pokemon } from "../../core/models/pokemon.model";
 
 export interface IPokemonStateModel {
-    pokemon: Pokeapi.IPokemon[]
+    meta: Pokemon.IMeta,
+    pokemons: Pokemon.IPokemon[]
 }
 
 export const defaultPokemonState: IPokemonStateModel = {
-    pokemon: []
+    meta: null,
+    pokemons: []
 }
