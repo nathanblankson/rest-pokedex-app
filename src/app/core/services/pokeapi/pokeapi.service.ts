@@ -23,9 +23,46 @@ export class PokeapiService extends BaseHttp {
                 mergeMap((response: Pokeapi.INamedAPIResourceList) => {
                     // Get the pokemon details for each result
                     return from(response.results).pipe(
+                        mergeMap((result) => {
+                            const pokemonUrl: string = result.url;
+                            return this.getPokemonDetails(pokemonUrl).pipe(
+                                map((pokemon: Pokeapi.IPokemon) => {
+                                    return Pokemon.parsePokemonFromPokeapi(pokemon) // attaches the image url from bastionbot
+                                })
+                            );
+                        }),
+                        toArray(),
+                        map((pokemons: Pokemon.IPokemon[]) => {
+                            // Sort Pokemon by ID
+                            pokemons.sort((pokemonA: Pokemon.IPokemon, pokemonB: Pokemon.IPokemon) => {
+                                const pokemonAId = pokemonA.id;
+                                const pokemonBId = pokemonB.id
+                                return (pokemonAId < pokemonBId) ? -1 : (pokemonAId > pokemonBId) ? 1 : 0;
+                            });
+
+                            // Return pokemon details along with pagination information
+                            return {
+                                meta: {
+                                    count: response.count,
+                                    next: response.next,
+                                    previous: response.previous
+                                },
+                                pokemons
+                            }
+                        })
+                    );
+                }),
+            );
+    }
+
+    // Uses concatMap - appears to be slower ;-; but requires no sorting...
+    public getPokemonListDetails2(pageParams: Pokeapi.IPageParams): Observable<Pokemon.IAllPokemonDetails> {
+        return this.getPokemonList(pageParams)
+            .pipe(
+                mergeMap((response: Pokeapi.INamedAPIResourceList) => {
+                    // Get the pokemon details for each result
+                    return from(response.results).pipe(
                         concatMap((result) => {
-                            console.log('3 - result');
-                            console.log(result);
                             const pokemonUrl: string = result.url;
                             return this.getPokemonDetails(pokemonUrl).pipe(
                                 map((pokemon: Pokeapi.IPokemon) => {
@@ -51,8 +88,8 @@ export class PokeapiService extends BaseHttp {
     }
 
     private getPokemonList(pageParams: Pokeapi.IPageParams): Observable<Pokeapi.INamedAPIResourceList> {
-        const limit = String(pageParams.limit) || '5';
-        const offset = String(pageParams.offset) || '0';
+        const limit = String(pageParams.limit);
+        const offset = String(pageParams.offset);
         const params: HttpParams = new HttpParams()
             .set('limit', limit)
             .set('offset', offset);
