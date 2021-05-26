@@ -7,15 +7,20 @@
         <!-- Filters? -->
 
         <div class="pokemon-list">
-            <app-pokemon-list-item *ngFor="let pokemon of allPokemonData?.pokemons"
+            <app-pokemon-list-item
+                *ngFor="let pokemon of allPokemonData?.pokemons"
                 [pokemon]="pokemon">
             </app-pokemon-list-item>
         </div>
 
         <!-- Pagination -->
-        <div>
-            {{ allPokemonData?.count }}
-        </div>
+        <mat-paginator
+            showFirstLastButtons
+            [length]="allPokemonData?.meta.count"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="[1, 5, 10, 20]"
+            (page)="pageEvent = $event; onPaginateChange($event)">
+        </mat-paginator>
 
     </div>
 
