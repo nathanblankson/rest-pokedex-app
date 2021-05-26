@@ -35,8 +35,6 @@ export class PokemonState {
         { patchState }: StateContext<IPokemonStateModel>,
         { payload }: GetPokemonListDetailsSuccess
     ): void {
-        console.log('==PAYLOAD SUCCESS');
-        console.log(payload);
         patchState({
             meta: payload.meta,
             pokemons: payload.pokemons
