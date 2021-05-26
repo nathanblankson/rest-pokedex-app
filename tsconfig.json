@@ -2,7 +2,21 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "baseUrl": "./",
+        "baseUrl": "src",
+        "paths": {
+            "@core/*": [
+                "app/core/*"
+            ],
+            "@environment/*": [
+                "environments/*"
+            ],
+            "@pokemon/*": [
+                "app/+pokemon/*"
+            ],
+            "@store/*": [
+                "app/store/*"
+            ]
+        },
         "outDir": "./dist/out-tsc",
         "sourceMap": true,
         "declaration": false,

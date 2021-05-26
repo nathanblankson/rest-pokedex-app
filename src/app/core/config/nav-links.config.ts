@@ -1,4 +1,4 @@
-import { INavLink } from '../interfaces/nav-links.interface';
+import { INavLink } from '@core/interfaces/nav-links.interface';
 
 export const NavLinks: INavLink[] = [
     {
@@ -17,4 +17,3 @@ export const NavLinks: INavLink[] = [
         iconClass: 'fas fa-star'
     }
 ];
-

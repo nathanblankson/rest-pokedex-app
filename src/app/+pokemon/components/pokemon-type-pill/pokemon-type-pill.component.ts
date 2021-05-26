@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ConnectionPositionPair } from '@angular/cdk/overlay';
 
-import { Pokeapi } from '../../../core/models/pokeapi.model';
-import { pokemonTypeEffectiveness, typeEffectiveness } from '../../../core/config/pokemon-types.config';
+import { Pokeapi } from '@core/models/pokeapi.model';
+import { pokemonTypeEffectiveness, typeEffectiveness } from '@core/config/pokemon-types.config';
 
 @Component({
     selector: 'app-pokemon-type-pill',

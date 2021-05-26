@@ -24,6 +24,8 @@ export interface typeEffectiveness {
     weakVs: string[];
 }
 
+// Using Pokemon GO type chart
+
 // normal
 const normalStrongVs: string[] = [
     PokemonTypeEnum.GHOST

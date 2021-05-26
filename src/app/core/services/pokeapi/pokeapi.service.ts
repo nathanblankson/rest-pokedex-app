@@ -4,9 +4,9 @@ import { from, Observable } from 'rxjs';
 import { concatMap, map, mergeMap, toArray } from 'rxjs/operators';
 
 import { BaseHttp } from '../abstract/base-http.class';
-import { Pokeapi } from '../../models/pokeapi.model';
-import { PokeapiApiEndpoints } from '../../config/pokeapi-api.config';
-import { Pokemon } from '../../models/pokemon.model';
+import { Pokeapi } from '@core/models/pokeapi.model';
+import { PokeapiApiEndpoints } from '@core/config/pokeapi-api.config';
+import { Pokemon } from '@core/models/pokemon.model';
 
 @Injectable({
     providedIn: 'root'

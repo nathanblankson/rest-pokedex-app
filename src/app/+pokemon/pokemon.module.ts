@@ -4,8 +4,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
+import { LayoutModule } from '@core/layout/layout.module';
 import { PokemonRoutingModule } from './pokemon-routing.module';
-import { LayoutModule } from '../core/layout/layout.module';
 import { PokemonComponent } from './pages/pokemon/pokemon.component';
 import { PokemonListItemComponent } from './components/pokemon-list-item/pokemon-list-item.component';
 import { PokemonTypePillComponent } from './components/pokemon-type-pill/pokemon-type-pill.component';
@@ -17,8 +17,8 @@ import { PokemonStatBarComponent } from './components/pokemon-stat-bar/pokemon-s
         OverlayModule,
         MatDividerModule,
         MatProgressBarModule,
-        PokemonRoutingModule,
-        LayoutModule
+        LayoutModule,
+        PokemonRoutingModule
     ],
     declarations: [
         PokemonComponent,

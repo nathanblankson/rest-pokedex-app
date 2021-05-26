@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
-import { GetPokemonListDetails, IPokemonStateModel, PokemonState } from '../../../store';
+import { GetPokemonListDetails, IPokemonStateModel, PokemonState } from '@store/pokemon';
 
 @Component({
     selector: 'app-pokemon',
@@ -16,7 +16,7 @@ export class PokemonComponent implements OnInit {
 
     constructor(private store: Store) { }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.store.dispatch(new GetPokemonListDetails({ limit: 3, offset: 0 }));
     }
 

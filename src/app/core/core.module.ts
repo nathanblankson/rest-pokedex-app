@@ -14,7 +14,9 @@ import { appState } from '../store';
     ]
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {
+
     constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
         super(parentModule);
     }
+
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NavLinks } from '../../../config/nav-links.config';
-import { INavLink } from '../../../interfaces/nav-links.interface';
+import { NavLinks } from '@core/config/nav-links.config';
+import { INavLink } from '@core/interfaces/nav-links.interface';
 
 @Component({
     selector: 'app-nav-links',
@@ -14,7 +14,7 @@ export class NavLinksComponent implements OnInit {
 
     constructor() { }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
     }
 
 }

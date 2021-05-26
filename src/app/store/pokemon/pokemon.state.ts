@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import { catchError, tap } from 'rxjs/operators';
 
-import { Pokeapi } from '../../core/models/pokeapi.model';
-import { Pokemon } from '../../core/models/pokemon.model';
-import { PokeapiService } from '../../core/services/pokeapi/pokeapi.service';
+import { Pokemon } from '@core/models/pokemon.model';
+import { PokeapiService } from '@core/services/pokeapi/pokeapi.service';
 import { defaultPokemonState, IPokemonStateModel } from './pokemon-state.model';
 import { GetPokemonListDetails, GetPokemonListDetailsFail, GetPokemonListDetailsSuccess } from './pokemon.actions';
 

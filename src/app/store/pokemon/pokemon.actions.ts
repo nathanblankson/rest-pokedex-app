@@ -1,5 +1,5 @@
-import { Pokeapi } from "../../core/models/pokeapi.model";
-import { Pokemon } from "../../core/models/pokemon.model";
+import { Pokeapi } from '@core/models/pokeapi.model';
+import { Pokemon } from '@core/models/pokemon.model';
 
 export class GetPokemonListDetails {
     public static readonly type: string = '[ Pokemon ] Get Pokemon List Details';

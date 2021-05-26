@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Pokeapi } from '../../../core/models/pokeapi.model';
+import { Pokeapi } from '@core/models/pokeapi.model';
 
 @Component({
     selector: 'app-pokemon-stat-bar',
@@ -14,6 +14,6 @@ export class PokemonStatBarComponent implements OnInit {
 
     constructor() { }
 
-    ngOnInit(): void { }
+    public ngOnInit(): void { }
 
 }

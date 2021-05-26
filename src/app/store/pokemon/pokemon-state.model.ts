@@ -1,4 +1,4 @@
-import { Pokemon } from "../../core/models/pokemon.model";
+import { Pokemon } from '@core/models/pokemon.model';
 
 export interface IPokemonStateModel {
     meta: Pokemon.IMeta,

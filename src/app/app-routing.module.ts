@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
 
 const routes: Routes = [
     {
         path: 'pokemon',
-        loadChildren: () => import('./+pokemon/pokemon.module').then((m) => m.PokemonModule)
+        loadChildren: () => import('@pokemon/pokemon.module').then((m) => m.PokemonModule)
     },
     {
         path: '**',
