@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -16,14 +17,17 @@ export class PokemonComponent implements OnInit {
     @Select(PokemonState)
     public allPokemonData$: Observable<IPokemonStateModel>;
 
+    public pokemonSearchFormGroup: FormGroup;
+
     public pageEvent: PageEvent;
     public pageSize: number = 1;
 
-    constructor(private store: Store) { }
+    constructor(private fb: FormBuilder, private store: Store) { }
 
     public ngOnInit(): void {
         const pageParams: Pokeapi.IPageParams = { limit: this.pageSize, offset: 0 };
         this._fetchPokemon(pageParams);
+        this._initForm();
     }
 
     public onPaginateChange(event: PageEvent): void {
@@ -35,6 +39,12 @@ export class PokemonComponent implements OnInit {
 
     private _fetchPokemon(pageParams: Pokeapi.IPageParams): void {
         this.store.dispatch(new GetPokemonListDetails(pageParams));
+    }
+
+    private _initForm() {
+        this.pokemonSearchFormGroup = this.fb.group({
+            searchFilter: ''
+        });
     }
 
 }

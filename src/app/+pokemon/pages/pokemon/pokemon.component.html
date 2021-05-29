@@ -1,26 +1,38 @@
 <app-nav-wrapper>
 
-    <div *ngIf="allPokemonData$ | async as allPokemonData" class="container">
+    <div class="container">
 
-        <!-- Search -->
+        <!-- Controls -->
+        <form [formGroup]="pokemonSearchFormGroup">
+            <mat-form-field>
+                <input
+                    type="text"
+                    matInput
+                    formControlName="searchFilter"
+                    placeholder="Filter displayed Pokémon" />
+            </mat-form-field>
+        </form>
 
-        <!-- Filters? -->
+        <div *ngIf="allPokemonData$ | async as allPokemonData">
 
-        <div class="pokemon-list">
-            <app-pokemon-list-item
-                *ngFor="let pokemon of allPokemonData?.pokemons"
-                [pokemon]="pokemon">
-            </app-pokemon-list-item>
+            <!-- Pokemon List -->
+            <div class="pokemon-list">
+                <app-pokemon-list-item
+                    *ngFor="let pokemon of allPokemonData?.pokemons"
+                    [pokemon]="pokemon">
+                </app-pokemon-list-item>
+            </div>
+
+            <!-- Pagination -->
+            <mat-paginator
+                showFirstLastButtons
+                [length]="allPokemonData?.meta?.count"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="[1, 5, 10, 20]"
+                (page)="pageEvent = $event; onPaginateChange($event)">
+            </mat-paginator>
+
         </div>
-
-        <!-- Pagination -->
-        <mat-paginator
-            showFirstLastButtons
-            [length]="allPokemonData?.meta.count"
-            [pageSize]="pageSize"
-            [pageSizeOptions]="[1, 5, 10, 20]"
-            (page)="pageEvent = $event; onPaginateChange($event)">
-        </mat-paginator>
 
     </div>
 

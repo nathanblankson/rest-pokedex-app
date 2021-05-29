@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
@@ -16,7 +19,10 @@ import { PokemonStatBarComponent } from './components/pokemon-stat-bar/pokemon-s
     imports: [
         CommonModule,
         OverlayModule,
+        ReactiveFormsModule,
         MatDividerModule,
+        MatFormFieldModule,
+        MatInputModule,
         MatPaginatorModule,
         MatProgressBarModule,
         LayoutModule,

@@ -1,11 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { catchError, tap } from 'rxjs/operators';
 
 import { Pokemon } from '@core/models/pokemon.model';
 import { PokeapiService } from '@core/services/pokeapi/pokeapi.service';
-import { defaultPokemonState, IPokemonStateModel } from './pokemon-state.model';
 import { GetPokemonListDetails, GetPokemonListDetailsFail, GetPokemonListDetailsSuccess } from './pokemon.actions';
+
+export interface IPokemonStateModel {
+    meta: Pokemon.IMeta,
+    pokemons: Pokemon.IPokemon[]
+}
+
+const defaultPokemonState: IPokemonStateModel = {
+    meta: null,
+    pokemons: []
+}
 
 @State<IPokemonStateModel>({
     name: 'Pokemon',
@@ -13,6 +22,11 @@ import { GetPokemonListDetails, GetPokemonListDetailsFail, GetPokemonListDetails
 })
 @Injectable()
 export class PokemonState {
+
+    @Selector()
+    public static allPokemonDetails(state: IPokemonStateModel): IPokemonStateModel {
+        return state;
+    }
 
     constructor(private pokeapiService: PokeapiService) { }
 
