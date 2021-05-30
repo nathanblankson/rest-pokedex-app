@@ -1,0 +1,21 @@
+@import '_animations';
+@import '_colors';
+
+.wishlist {
+    color: $red;
+    cursor: pointer;
+
+    &--add {
+        &:hover {
+            animation: pulse 1s infinite;
+            animation-timing-function: linear;
+        }
+    }
+
+    &--remove {
+        &:hover {
+            animation: shake .1s infinite;
+            animation-timing-function: linear;
+        }
+    }
+}

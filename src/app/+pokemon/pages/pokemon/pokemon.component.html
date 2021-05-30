@@ -3,7 +3,7 @@
     <div class="container">
 
         <!-- Controls -->
-        <form [formGroup]="pokemonSearchFormGroup">
+        <!-- <form [formGroup]="pokemonSearchFormGroup">
             <mat-form-field>
                 <input
                     type="text"
@@ -11,7 +11,7 @@
                     formControlName="searchFilter"
                     placeholder="Filter displayed Pokémon" />
             </mat-form-field>
-        </form>
+        </form> -->
 
         <div *ngIf="allPokemonData$ | async as allPokemonData">
 
