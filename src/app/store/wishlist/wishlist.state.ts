@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { Action, createSelector, Selector, State, StateContext } from '@ngxs/store';
 import { append, patch, removeItem } from '@ngxs/store/operators';
 
 import { Pokemon } from '@core/models/pokemon.model';
@@ -25,25 +25,9 @@ export class WishlistState {
         return state;
     }
 
-    // @Selector()
-    // public static isPokemonWishlisted(state: IWishlistStateModel) {
-    //     return (id: number) => {
-    //         return !!state.pokemons.filter((pokemon) => pokemon.id === id);
-    //     }
-    // }
-
-    // public static isPokemonWishlisted(id: number) {
-    //     return !!createSelector([WishlistState], (state: IWishlistStateModel) =>
-    //         !!state.pokemons.filter((pokemon: Pokemon.IPokemon) => pokemon.id === id));
-    // }
-
-
-    // public static getLeadByID(id: string) {
-    //     return createSelector([ResultsState, ResultsJobLeadsState], (resultsState: IResultsStateModel, resultsJobLeadsState: IJobLeadsStateModel): IJobLeadResultsData => {
-    //         const results = resultsJobLeadsState.results.get(resultsState.latestResultsType);
-    //         return !!results && (results.data as IJobLeadResultsData[]).find(item => item.id === id);
-    //     });
-    // }
+    public static isPokemonWishlisted(pokemon: Pokemon.IPokemon) {
+        return createSelector([WishlistState], (state: IWishlistStateModel): boolean => state.pokemons.includes(pokemon))
+    }
 
     constructor() { }
 
@@ -56,7 +40,7 @@ export class WishlistState {
             patch({
                 pokemons: append([payload])
             })
-        )
+        );
     }
 
     @Action(RemovePokemonFromWishlist)

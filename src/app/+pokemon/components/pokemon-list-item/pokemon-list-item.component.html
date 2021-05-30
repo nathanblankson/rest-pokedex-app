@@ -29,7 +29,10 @@
 
     <div class="pokemon__actions">
 
-        <app-pokemon-wishlist-button [isWishlisted]="true"></app-pokemon-wishlist-button>
+        <app-pokemon-wishlist-button
+            [isWishlisted]="isWishlisted$ | async"
+            (isWishlistedEvent)="isWishlistedEmitted($event)">
+        </app-pokemon-wishlist-button>
 
         <i class="fas fa-star"></i>
 

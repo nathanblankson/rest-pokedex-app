@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Store } from '@ngxs/store';
 
 
@@ -12,10 +12,17 @@ export class PokemonWishlistButtonComponent implements OnInit {
     @Input()
     public isWishlisted: boolean;
 
+    @Output()
+    public isWishlistedEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
+
     constructor() { }
 
     public ngOnInit(): void {
 
+    }
+
+    public isWishlistedEmit() {
+        this.isWishlistedEvent.emit(this.isWishlisted);
     }
 
 }
