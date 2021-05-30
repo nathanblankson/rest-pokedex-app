@@ -34,7 +34,6 @@ export class PokemonListItemComponent implements OnInit {
 
     private _initIsWishlist(): void {
         this.isWishlisted$ = this.store.select(WishlistState.isPokemonWishlisted(this.pokemon));
-        this.isWishlisted$.subscribe((r) => console.log(r));
     }
 
 }

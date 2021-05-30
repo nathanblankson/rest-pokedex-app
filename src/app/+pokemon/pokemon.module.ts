@@ -29,6 +29,9 @@ import { PokemonWishlistButtonComponent } from './components/pokemon-wishlist-bu
         LayoutModule,
         PokemonRoutingModule
     ],
+    exports: [
+        PokemonListItemComponent
+    ],
     declarations: [
         PokemonComponent,
         PokemonListItemComponent,

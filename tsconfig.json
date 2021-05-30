@@ -13,6 +13,9 @@
             "@pokemon/*": [
                 "app/+pokemon/*"
             ],
+            "@wishlist/*": [
+                "app/+wishlist/*"
+            ],
             "@store/*": [
                 "app/store/*"
             ]

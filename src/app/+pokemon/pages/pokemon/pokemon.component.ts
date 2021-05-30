@@ -20,7 +20,7 @@ export class PokemonComponent implements OnInit {
     public pokemonSearchFormGroup: FormGroup;
 
     public pageEvent: PageEvent;
-    public pageSize: number = 1;
+    public pageSize: number = 10;
 
     constructor(private fb: FormBuilder, private store: Store) { }
 

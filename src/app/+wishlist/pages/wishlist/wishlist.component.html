@@ -1,0 +1,19 @@
+<app-nav-wrapper>
+
+    <div class="container">
+
+        <div *ngIf="wishlistedPokemon$ | async as wishlistedPokemon">
+
+            <!-- Pokemon List -->
+            <div class="pokemon-list">
+                <app-pokemon-list-item
+                    *ngFor="let pokemon of wishlistedPokemon?.pokemons"
+                    [pokemon]="pokemon">
+                </app-pokemon-list-item>
+            </div>
+
+        </div>
+
+    </div>
+
+</app-nav-wrapper>

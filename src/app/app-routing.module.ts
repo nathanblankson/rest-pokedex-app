@@ -7,6 +7,10 @@ const routes: Routes = [
         loadChildren: () => import('@pokemon/pokemon.module').then((m) => m.PokemonModule)
     },
     {
+        path: 'wishlist',
+        loadChildren: () => import('./+wishlist/wishlist.module').then((m) => m.WishlistModule)
+    },
+    {
         path: '**',
         redirectTo: '/pokemon'
     }
