@@ -25,8 +25,9 @@ export class WishlistState {
         return state;
     }
 
-    public static isPokemonWishlisted(pokemon: Pokemon.IPokemon) {
-        return createSelector([WishlistState], (state: IWishlistStateModel): boolean => state.pokemons.includes(pokemon))
+    public static isPokemonWishlisted(id: number) {
+        return createSelector([WishlistState], (state: IWishlistStateModel): boolean =>
+            state.pokemons.some((pokemon: Pokemon.IPokemon) => pokemon.id === id));
     }
 
     constructor() { }

@@ -24,16 +24,15 @@ export class PokemonListItemComponent implements OnInit {
     }
 
     public isWishlistedEmitted(isWishlisted: boolean) {
-        const id = this.pokemon.id;
         if (isWishlisted) {
-            this.store.dispatch(new RemovePokemonFromWishlist({ id }));
+            this.store.dispatch(new RemovePokemonFromWishlist({ id: this.pokemon.id }));
         } else {
             this.store.dispatch(new AddPokemonToWishlist(this.pokemon));
         }
     }
 
     private _initIsWishlist(): void {
-        this.isWishlisted$ = this.store.select(WishlistState.isPokemonWishlisted(this.pokemon));
+        this.isWishlisted$ = this.store.select(WishlistState.isPokemonWishlisted(this.pokemon.id));
     }
 
 }
