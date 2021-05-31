@@ -1,1 +1,26 @@
-<p>pokemon-details works!</p>
+<app-nav-wrapper>
+
+    <div class="container">
+
+        <!-- Top -->
+        <div class="top">
+            <div class="top__image">
+                <img class="image"
+                    [src]="'https://pokeres.bastionbot.org/images/pokemon/1.png'"
+                    [alt]="'bulbasaur' | titlecase">
+                <img *ngIf="true" class="stamp" [src]="'/assets/images/pokeball.svg'">
+            </div>
+            <div class="top__info">
+                <h2 class="name">Bulbasaur</h2>
+                <h1 class="id">#1</h1>
+            </div>
+        </div>
+
+        <!-- Info -->
+        <div class="details">
+
+        </div>
+
+    </div>
+
+</app-nav-wrapper>

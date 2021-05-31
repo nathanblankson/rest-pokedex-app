@@ -1,0 +1,62 @@
+@import '_colors';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding: 40px 20px;
+
+    @media only screen and (min-width: 800px) {
+        padding: 80px 40px;
+    }
+
+    .top {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 45px;
+
+        &__image {
+            position: relative;
+            width: 120px;
+            height: 120px;
+
+            .image {
+                width: 100%;
+            }
+
+            .stamp {
+                position: absolute;
+                top: -60px;
+                left: -56px;
+                width: 240px;
+                z-index: -1;
+            }
+        }
+
+        &__info {
+            .name {
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .id {
+                color: $steel;
+                font-size: 40px;
+            }
+        }
+    }
+
+    .details {
+        display: grid;
+        justify-content: center;
+        grid-gap: 50px;
+        width: 100%;
+        margin-bottom: 20px;
+
+        @media only screen and (min-width: 800px) {
+            grid-template-columns: repeat(auto-fit, 700px);
+        }
+    }
+}
