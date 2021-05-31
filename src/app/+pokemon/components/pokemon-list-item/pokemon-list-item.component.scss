@@ -17,6 +17,11 @@
         border-left: 5px solid $red;
     }
 
+    .clickable-area {
+        display: flex;
+        width: 100%;
+    }
+
     &__id {
         position: absolute;
         font-size: 20px;

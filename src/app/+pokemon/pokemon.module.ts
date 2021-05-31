@@ -15,6 +15,7 @@ import { PokemonListItemComponent } from './components/pokemon-list-item/pokemon
 import { PokemonTypePillComponent } from './components/pokemon-type-pill/pokemon-type-pill.component';
 import { PokemonStatBarComponent } from './components/pokemon-stat-bar/pokemon-stat-bar.component';
 import { PokemonWishlistButtonComponent } from './components/pokemon-wishlist-button/pokemon-wishlist-button.component';
+import { PokemonDetailsComponent } from './pages/pokemon-details/pokemon-details.component';
 
 @NgModule({
     imports: [
@@ -37,7 +38,8 @@ import { PokemonWishlistButtonComponent } from './components/pokemon-wishlist-bu
         PokemonListItemComponent,
         PokemonTypePillComponent,
         PokemonStatBarComponent,
-        PokemonWishlistButtonComponent
+        PokemonWishlistButtonComponent,
+        PokemonDetailsComponent
     ]
 })
 export class PokemonModule { }
