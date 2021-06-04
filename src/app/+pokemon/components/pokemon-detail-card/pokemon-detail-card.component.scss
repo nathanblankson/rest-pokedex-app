@@ -1,0 +1,11 @@
+@import '_colors';
+
+.pokemon-detail-card {
+    &--has-border {
+        border-top: 5px solid #607d8b;
+    }
+
+    &__header {
+        font-size: 18px;
+    }
+}

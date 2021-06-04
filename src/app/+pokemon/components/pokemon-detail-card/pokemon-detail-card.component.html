@@ -1,0 +1,21 @@
+<mat-accordion>
+
+    <mat-expansion-panel
+        class="pokemon-detail-card"
+        togglePosition="before"
+        [hideToggle]="hideToggle"
+        [ngClass]="{'pokemon-detail-card--has-border': hasBorder}">
+
+        <mat-expansion-panel-header class="pokemon-detail-card__header">
+            <mat-panel-title>
+                <h3 class="title">{{ panelTitle }}</h3>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="pokemon-detail-card__content">
+            <ng-content></ng-content>
+        </div>
+
+    </mat-expansion-panel>
+
+</mat-accordion>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -16,6 +17,7 @@ import { PokemonTypePillComponent } from './components/pokemon-type-pill/pokemon
 import { PokemonStatBarComponent } from './components/pokemon-stat-bar/pokemon-stat-bar.component';
 import { PokemonWishlistButtonComponent } from './components/pokemon-wishlist-button/pokemon-wishlist-button.component';
 import { PokemonDetailsComponent } from './pages/pokemon-details/pokemon-details.component';
+import { PokemonDetailCardComponent } from './components/pokemon-detail-card/pokemon-detail-card.component';
 
 @NgModule({
     imports: [
@@ -23,6 +25,7 @@ import { PokemonDetailsComponent } from './pages/pokemon-details/pokemon-details
         OverlayModule,
         ReactiveFormsModule,
         MatDividerModule,
+        MatExpansionModule,
         MatFormFieldModule,
         MatInputModule,
         MatPaginatorModule,
@@ -39,7 +42,8 @@ import { PokemonDetailsComponent } from './pages/pokemon-details/pokemon-details
         PokemonTypePillComponent,
         PokemonStatBarComponent,
         PokemonWishlistButtonComponent,
-        PokemonDetailsComponent
+        PokemonDetailsComponent,
+        PokemonDetailCardComponent
     ]
 })
 export class PokemonModule { }
