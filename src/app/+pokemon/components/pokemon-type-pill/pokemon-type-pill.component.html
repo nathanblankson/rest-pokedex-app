@@ -3,8 +3,8 @@
     class="pill"
     cdkOverlayOrigin
     [ngClass]="'pill--' + type.type.name"
-    (mouseover)="typeEffectivenessShown=true"
-    (mouseout)="typeEffectivenessShown=false">
+    (mouseover)="showTypeEffectiveness ? typeEffectivenessShown=true : ''"
+    (mouseout)="showTypeEffectiveness ? typeEffectivenessShown=false : ''">
     {{ type.type.name | titlecase }}
 </div>
 <ng-template
