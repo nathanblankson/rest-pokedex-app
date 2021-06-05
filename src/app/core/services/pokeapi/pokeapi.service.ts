@@ -17,15 +17,15 @@ export class PokeapiService extends BaseHttp {
         super();
     }
 
-    public getPokemonListDetails(pageParams: Pokeapi.IPageParams): Observable<Pokemon.IAllPokemonDetails> {
-        return this.getPokemonList(pageParams)
+    public getPokemonDetailsList(pageParams: Pokeapi.IPageParams): Observable<Pokemon.IAllPokemonDetails> {
+        return this.getPokemonResourceList(pageParams)
             .pipe(
                 mergeMap((response: Pokeapi.INamedAPIResourceList) => {
                     // Get the pokemon details for each result
                     return from(response.results).pipe(
                         mergeMap((result) => {
                             const pokemonUrl: string = result.url;
-                            return this.getPokemonDetails(pokemonUrl).pipe(
+                            return this.getPokemonByUrl(pokemonUrl).pipe(
                                 map((pokemon: Pokeapi.IPokemon) => {
                                     return Pokemon.parsePokemonFromPokeapi(pokemon) // attaches the image url from bastionbot
                                 })
@@ -55,39 +55,7 @@ export class PokeapiService extends BaseHttp {
             );
     }
 
-    // Uses concatMap - appears to be slower ;-; but requires no sorting...
-    public getPokemonListDetails2(pageParams: Pokeapi.IPageParams): Observable<Pokemon.IAllPokemonDetails> {
-        return this.getPokemonList(pageParams)
-            .pipe(
-                mergeMap((response: Pokeapi.INamedAPIResourceList) => {
-                    // Get the pokemon details for each result
-                    return from(response.results).pipe(
-                        concatMap((result) => {
-                            const pokemonUrl: string = result.url;
-                            return this.getPokemonDetails(pokemonUrl).pipe(
-                                map((pokemon: Pokeapi.IPokemon) => {
-                                    return Pokemon.parsePokemonFromPokeapi(pokemon) // attaches the image url from bastionbot
-                                })
-                            );
-                        }),
-                        toArray(),
-                        map((pokemons: Pokemon.IPokemon[]) => {
-                            // Return pokemon details along with pagination information
-                            return {
-                                meta: {
-                                    count: response.count,
-                                    next: response.next,
-                                    previous: response.previous
-                                },
-                                pokemons
-                            }
-                        })
-                    );
-                }),
-            );
-    }
-
-    private getPokemonList(pageParams: Pokeapi.IPageParams): Observable<Pokeapi.INamedAPIResourceList> {
+    public getPokemonResourceList(pageParams: Pokeapi.IPageParams): Observable<Pokeapi.INamedAPIResourceList> {
         const limit = String(pageParams.limit);
         const offset = String(pageParams.offset);
         const params: HttpParams = new HttpParams()
@@ -96,7 +64,11 @@ export class PokeapiService extends BaseHttp {
         return this.http.get<Pokeapi.INamedAPIResourceList>(PokeapiApiEndpoints.pokemon, { params });
     }
 
-    private getPokemonDetails(url: string): Observable<Pokeapi.IPokemon> {
+    public getPokemonByName(name: string): Observable<Pokeapi.IPokemon> {
+        return this.http.get<Pokeapi.IPokemon>(`${PokeapiApiEndpoints.pokemon}/${name}`);
+    }
+
+    public getPokemonByUrl(url: string): Observable<Pokeapi.IPokemon> {
         return this.http.get<Pokeapi.IPokemon>(url);
     }
 

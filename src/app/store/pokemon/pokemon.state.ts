@@ -35,7 +35,7 @@ export class PokemonState {
         { dispatch }: StateContext<IPokemonStateModel>,
         { payload }: GetPokemonListDetails
     ) {
-        return this.pokeapiService.getPokemonListDetails(payload).pipe(
+        return this.pokeapiService.getPokemonDetailsList(payload).pipe(
             tap((result: Pokemon.IAllPokemonDetails) => {
                 dispatch(new GetPokemonListDetailsSuccess(result));
             }),
