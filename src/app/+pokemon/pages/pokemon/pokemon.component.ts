@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
-import { Select, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
-import { GetPokemonListDetails, IPokemonStateModel, PokemonState } from '@store/pokemon';
-import { Pokeapi } from '@core/models/pokeapi.model';
+import { Pokemon } from '@core/models/pokemon.model';
+import { GetPokemonDetailsList, GetPokemonResourceList, PokemonState } from '@store/pokemon';
 
 @Component({
     selector: 'app-pokemon',
@@ -14,31 +14,43 @@ import { Pokeapi } from '@core/models/pokeapi.model';
 })
 export class PokemonComponent implements OnInit {
 
-    @Select(PokemonState)
-    public allPokemonData$: Observable<IPokemonStateModel>;
+    public filteredPokemon$: Observable<Pokemon.IPokemon[]>;
+    public filteredPokemonCount$: Observable<number>;
 
     public pokemonSearchFormGroup: FormGroup;
 
     public pageEvent: PageEvent;
     public pageSize: number = 1;
+    public currentPage: number = 0;
+    public pageOffset: number = 0;
 
-    constructor(private fb: FormBuilder, private store: Store) { }
+    constructor(private fb: FormBuilder, private store: Store) {
+        this.store.dispatch(new GetPokemonResourceList({ limit: 10000, offset: 0 })).subscribe(() => {
+            this.filteredPokemonCount$ = this.store.select(PokemonState.filteredPokemonCount('char'));
+            const pageParams = { limit: this.pageOffset + 1, offset: this.currentPage };
+            this.store.dispatch(new GetPokemonDetailsList({ searchQuery: 'char', pageParams })).subscribe(() => {
+                this.filteredPokemon$ = this.store.select(PokemonState.filteredPokemon('char', pageParams));
+            })
+        })
+    }
 
     public ngOnInit(): void {
-        const pageParams: Pokeapi.IPageParams = { limit: this.pageSize, offset: 0 };
-        this._fetchPokemon(pageParams);
         this._initForm();
     }
 
     public onPaginateChange(event: PageEvent): void {
-        const page = event.pageIndex;
-        const limit = event.pageSize;
-        const offset = limit * page;
-        this._fetchPokemon({ limit, offset });
+        this.currentPage = event.pageIndex;
+        this.pageSize = event.pageSize;
+        this.pageOffset = this.pageSize * this.currentPage;
+        this._fetchPokemon();
     }
 
-    private _fetchPokemon(pageParams: Pokeapi.IPageParams): void {
-        this.store.dispatch(new GetPokemonListDetails(pageParams));
+    // TODO: change the parameters / make it more clear
+    // limit = end
+    // offset = start
+    private _fetchPokemon(): void {
+        const pageParams = { limit: (this.currentPage + 1) * this.pageSize, offset: this.pageOffset };
+        this.store.dispatch(new GetPokemonDetailsList({ searchQuery: 'char', pageParams }));
     }
 
     private _initForm() {

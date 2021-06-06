@@ -2,12 +2,20 @@ import { Pokeapi } from './pokeapi.model';
 
 export namespace Pokemon {
 
-    export function parsePokemonFromPokeapi(pokemonData: Pokeapi.IPokemon): any {
+    export function parsePokemonFromPokeapi(pokemonData: Pokeapi.IPokemon): Pokemon.IPokemon {
         const pokemonId = pokemonData.id;
         return {
             ...pokemonData,
             image_url: `https://pokeres.bastionbot.org/images/pokemon/${pokemonId}.png`
         };
+    }
+
+    export function sortPokemonById(pokemon: Pokemon.IPokemon[]): Pokemon.IPokemon[] {
+        return pokemon.sort((pokemonA: Pokemon.IPokemon, pokemonB: Pokemon.IPokemon) => {
+            const pokemonAId = pokemonA.id;
+            const pokemonBId = pokemonB.id
+            return (pokemonAId < pokemonBId) ? -1 : (pokemonAId > pokemonBId) ? 1 : 0;
+        });
     }
 
     export interface IPokemon extends Pokeapi.IPokemon {

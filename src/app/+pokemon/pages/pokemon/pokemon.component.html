@@ -13,12 +13,12 @@
             </mat-form-field>
         </form> -->
 
-        <div *ngIf="allPokemonData$ | async as allPokemonData">
+        <div *ngIf="filteredPokemon$ | async as filteredPokemon">
 
             <!-- Pokemon List -->
             <div class="pokemon-list">
                 <app-pokemon-list-item
-                    *ngFor="let pokemon of allPokemonData?.pokemons"
+                    *ngFor="let pokemon of filteredPokemon | slice:pageOffset:(currentPage+1)*pageSize"
                     [pokemon]="pokemon">
                 </app-pokemon-list-item>
             </div>
@@ -26,7 +26,7 @@
             <!-- Pagination -->
             <mat-paginator
                 showFirstLastButtons
-                [length]="allPokemonData?.meta?.count"
+                [length]="filteredPokemonCount$ | async"
                 [pageSize]="pageSize"
                 [pageSizeOptions]="[1, 5, 10, 20]"
                 (page)="pageEvent = $event; onPaginateChange($event)">
