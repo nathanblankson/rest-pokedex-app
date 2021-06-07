@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,10 +19,14 @@ import { PokemonWishlistButtonComponent } from './components/pokemon-wishlist-bu
 import { PokemonDetailsComponent } from './pages/pokemon-details/pokemon-details.component';
 import { PokemonDetailCardComponent } from './components/pokemon-detail-card/pokemon-detail-card.component';
 
+
+import { DebounceDirective } from '../shared/directives/debounce/debounce.directive';
+
 @NgModule({
     imports: [
         CommonModule,
         OverlayModule,
+        FormsModule,
         ReactiveFormsModule,
         MatDividerModule,
         MatExpansionModule,
@@ -37,6 +41,7 @@ import { PokemonDetailCardComponent } from './components/pokemon-detail-card/pok
         PokemonListItemComponent
     ],
     declarations: [
+        DebounceDirective,
         PokemonComponent,
         PokemonListItemComponent,
         PokemonTypePillComponent,

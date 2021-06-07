@@ -2,16 +2,16 @@
 
     <div class="container">
 
-        <!-- Controls -->
-        <!-- <form [formGroup]="pokemonSearchFormGroup">
-            <mat-form-field>
-                <input
-                    type="text"
-                    matInput
-                    formControlName="searchFilter"
-                    placeholder="Filter displayed Pokémon" />
-            </mat-form-field>
-        </form> -->
+        <!-- Search -->
+
+        <mat-form-field>
+            <input
+                type="text"
+                matInput
+                placeholder="Search for a Pokémon e.g. Charizard"
+                [(ngModel)]="searchQuery"
+                (onDebounce)="onSearchFilterChange($event)" />
+        </mat-form-field>
 
         <div *ngIf="filteredPokemon$ | async as filteredPokemon">
 
@@ -25,6 +25,7 @@
 
             <!-- Pagination -->
             <mat-paginator
+                #paginator
                 showFirstLastButtons
                 [length]="filteredPokemonCount$ | async"
                 [pageSize]="pageSize"
