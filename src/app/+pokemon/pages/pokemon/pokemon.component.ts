@@ -18,14 +18,13 @@ export class PokemonComponent implements OnInit {
     public filteredPokemon$: Observable<Pokemon.IPokemon[]>;
     public filteredPokemonCount$: Observable<number>;
 
-    public searchQuery: string = 'char';
+    public searchQuery: string = '';
     public searchQueryChange: Subject<string> = new Subject<string>();
 
     @ViewChild('paginator') public paginator: MatPaginator;
     public pageEvent: PageEvent;
-    public pageSize: number = 1;
-    public currentPage: number = 0;
-    public pageOffset: number = 0;
+    public pageSize: number = 2;
+    public currentPageIndex: number = 0;
 
     constructor(private store: Store) {
         this.store.select(PokemonState.pokemonResourceList)
@@ -45,22 +44,29 @@ export class PokemonComponent implements OnInit {
     public ngOnInit(): void { }
 
     public onSearchFilterChange(value: string): void {
-        this._fetchPokemon();
-        this.paginator.firstPage();
+        if (this.currentPageIndex !== 0) {
+            this.paginator.firstPage();
+        } else {
+            this._fetchPokemon();
+        }
     }
 
     public onPaginateChange(event: PageEvent): void {
-        this.currentPage = event.pageIndex;
+        this.currentPageIndex = event.pageIndex;
         this.pageSize = event.pageSize;
-        this.pageOffset = this.pageSize * this.currentPage;
         this._fetchPokemon();
     }
 
     private _fetchPokemon(): void {
-        const pageParams = { limit: this.pageOffset + 1, offset: this.currentPage };
-        this.store.dispatch(new GetPokemonDetailsList({ searchQuery: this.searchQuery, pageParams })).subscribe(() => {
-            this.filteredPokemon$ = this.store.select(PokemonState.filteredPokemon(this.searchQuery, pageParams));
-        });
+        const start = this.currentPageIndex * this.pageSize;
+        const end = (this.currentPageIndex + 1) * this.pageSize;
+
+        this.store.dispatch(
+            new GetPokemonDetailsList({ searchQuery: this.searchQuery, params: { start, end, pageSize: this.pageSize } })).subscribe(() => {
+                this.filteredPokemon$ = this.store.select(
+                    PokemonState.filteredPokemon(this.searchQuery, { start, end })
+                );
+            });
         this.filteredPokemonCount$ = this.store.select(PokemonState.filteredPokemonCount(this.searchQuery));
     }
 

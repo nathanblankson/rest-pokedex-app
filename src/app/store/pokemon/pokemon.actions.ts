@@ -18,7 +18,7 @@ export class GetPokemonResourceListFail {
 
 export class GetPokemonDetailsList {
     public static readonly type: string = '[ Pokemon ] Get Pokemon Details List';
-    constructor(public payload: { searchQuery: string, pageParams: Pokeapi.IPageParams }) { };
+    constructor(public payload: { searchQuery: string, params: { start: number, end: number, pageSize: number } }) { };
 }
 
 export class GetPokemonDetailsListSuccess {

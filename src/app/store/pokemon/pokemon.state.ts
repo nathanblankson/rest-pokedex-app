@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Action, createSelector, Selector, State, StateContext } from '@ngxs/store';
-import { catchError, switchMap, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 import { Pokeapi } from '@core/models/pokeapi.model';
 import { Pokemon } from '@core/models/pokemon.model';
 import { PokeapiService } from '@core/services/pokeapi/pokeapi.service';
-import { GetPokemonDetailsList, GetPokemonDetailsListFail, GetPokemonDetailsListSuccess, GetPokemonResourceList, GetPokemonResourceListFail, GetPokemonResourceListSuccess } from './pokemon.actions';
-import { pipe } from 'rxjs';
+import {
+    GetPokemonDetailsList,
+    GetPokemonDetailsListFail,
+    GetPokemonDetailsListSuccess,
+    GetPokemonResourceList,
+    GetPokemonResourceListFail,
+    GetPokemonResourceListSuccess
+} from './pokemon.actions';
 
 export interface IPokemonStateModel {
     pokemonResourceList: Pokeapi.INamedAPIResourceList,
@@ -32,11 +38,21 @@ export class PokemonState {
         return state.pokemonResourceList;
     }
 
-    public static filteredPokemon(searchQuery: string, params: Pokeapi.IPageParams) {
+    public static filteredPokemon(searchQuery: string, params: { start: number, end: number }) {
         return createSelector([PokemonState], (pokemonState: IPokemonStateModel): Pokemon.IPokemon[] => {
+            const { start, end } = params;
             const adaptedSearchQuery = searchQuery.toLowerCase();
-            return pokemonState.pokemonDetailsList
-                .filter((pokemon: Pokemon.IPokemon) => pokemon.name.includes(adaptedSearchQuery));
+
+            const matchesInResourceList = pokemonState.pokemonResourceList.results
+                .filter((resource: Pokeapi.INamedApiResource) => resource.name.includes(adaptedSearchQuery))
+                .slice(start, end);
+
+            const matchesInDetailsList = pokemonState.pokemonDetailsList
+                .filter((pokemon: Pokemon.IPokemon) => {
+                    return matchesInResourceList.some((resource: Pokeapi.INamedApiResource) => resource.name === pokemon.name)
+                })
+
+            return matchesInDetailsList;
         });
     }
 
@@ -53,9 +69,7 @@ export class PokemonState {
 
     @Action(GetPokemonResourceList)
     public getPokemonResourceList(
-        { dispatch }: StateContext<IPokemonStateModel>,
-        { payload }: GetPokemonResourceList
-    ) {
+        { dispatch }: StateContext<IPokemonStateModel>) {
         return this.pokeapiService.getPokemonResourceList({ limit: 10000, offset: 0 }).pipe(
             tap((result: Pokeapi.INamedAPIResourceList) => {
                 dispatch(new GetPokemonResourceListSuccess(result));
@@ -86,27 +100,29 @@ export class PokemonState {
         { getState, dispatch }: StateContext<IPokemonStateModel>,
         { payload }: GetPokemonDetailsList
     ) {
+        const { start, end, pageSize } = payload.params;
         const adaptedSearchQuery = payload.searchQuery.toLowerCase();
-        const fetchStart = Number(payload.pageParams.offset);
-        const fetchEnd = Number(payload.pageParams.limit);
+
         const pokemonInResourceList = getState().pokemonResourceList;
         const pokemonInDetailsList = getState().pokemonDetailsList;
 
         const matchesInResourceList = pokemonInResourceList.results
             .filter((resource: Pokeapi.INamedApiResource) => resource.name.includes(adaptedSearchQuery))
-            .slice(fetchStart, fetchEnd);
+            .slice(start, end);
+
         const matchesInDetailsList = pokemonInDetailsList
             .filter((pokemon: Pokemon.IPokemon) => pokemon.name.includes(adaptedSearchQuery))
-            .slice(fetchStart, fetchEnd);
+
         const missingFromDetailsList = matchesInResourceList
             .filter(({ name: resourceName }) => !matchesInDetailsList
                 .some(({ name: pokemonName }) => resourceName === pokemonName))
-            .map((resource: Pokeapi.INamedApiResource) => resource.name);
+            .map((resource: Pokeapi.INamedApiResource) => resource.name)
+            .slice(0, pageSize)
 
         if (missingFromDetailsList.length === 0) {
             return true;
-        } else if (missingFromDetailsList.length > 5) {
-            // TODO: For testing purposes only - we don't want to spam the API whilst test/dev
+        } else if (missingFromDetailsList.length > 3) {
+            // TODO: For practicing purposes only - we don't want to spam the API
             console.log('Whoah there! We don\'t want to spam the FREE API now do we?\n Gonna stop you there bud.');
             throw new Error('Too many requests to be made!');
         }
