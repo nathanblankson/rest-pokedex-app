@@ -11,12 +11,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { LayoutModule } from '@core/layout/layout.module';
 import { PokemonRoutingModule } from './pokemon-routing.module';
-import { PokemonComponent } from './pages/pokemon/pokemon.component';
+import { PokemonComponent } from './containers/pokemon/pokemon.component';
 import { PokemonListItemComponent } from './components/pokemon-list-item/pokemon-list-item.component';
 import { PokemonTypePillComponent } from './components/pokemon-type-pill/pokemon-type-pill.component';
 import { PokemonStatBarComponent } from './components/pokemon-stat-bar/pokemon-stat-bar.component';
 import { PokemonWishlistButtonComponent } from './components/pokemon-wishlist-button/pokemon-wishlist-button.component';
-import { PokemonDetailsComponent } from './pages/pokemon-details/pokemon-details.component';
+import { PokemonDetailsComponent } from './containers/pokemon-details/pokemon-details.component';
 import { PokemonDetailCardComponent } from './components/pokemon-detail-card/pokemon-detail-card.component';
 
 

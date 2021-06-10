@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LayoutModule } from '@core/layout/layout.module';
 import { WishlistRoutingModule } from './wishlist-routing.module';
 import { PokemonModule } from '@pokemon/pokemon.module';
-import { WishlistComponent } from './pages/wishlist/wishlist.component';
+import { WishlistComponent } from './containers/wishlist/wishlist.component';
 
 
 @NgModule({

@@ -50,7 +50,7 @@ export class PokemonState {
             const matchesInDetailsList = pokemonState.pokemonDetailsList
                 .filter((pokemon: Pokemon.IPokemon) => {
                     return matchesInResourceList.some((resource: Pokeapi.INamedApiResource) => resource.name === pokemon.name)
-                })
+                });
 
             return matchesInDetailsList;
         });
@@ -111,13 +111,13 @@ export class PokemonState {
             .slice(start, end);
 
         const matchesInDetailsList = pokemonInDetailsList
-            .filter((pokemon: Pokemon.IPokemon) => pokemon.name.includes(adaptedSearchQuery))
+            .filter((pokemon: Pokemon.IPokemon) => pokemon.name.includes(adaptedSearchQuery));
 
         const missingFromDetailsList = matchesInResourceList
             .filter(({ name: resourceName }) => !matchesInDetailsList
                 .some(({ name: pokemonName }) => resourceName === pokemonName))
             .map((resource: Pokeapi.INamedApiResource) => resource.name)
-            .slice(0, pageSize)
+            .slice(0, pageSize);
 
         if (missingFromDetailsList.length === 0) {
             return true;

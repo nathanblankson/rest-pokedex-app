@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { WishlistComponent } from './pages/wishlist/wishlist.component';
+import { WishlistComponent } from './containers/wishlist/wishlist.component';
 
 const routes: Routes = [
     {
