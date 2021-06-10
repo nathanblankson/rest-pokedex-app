@@ -1,9 +1,6 @@
 <app-nav-wrapper>
 
     <div class="container">
-
-        <!-- Search -->
-
         <mat-form-field class="pokemon-search">
             <input
                 type="text"
@@ -14,28 +11,22 @@
         </mat-form-field>
 
         <ng-container *ngIf="filteredPokemon$ | async as filteredPokemon">
-            <!-- Pokemon List -->
             <div class="pokemon-list">
-
-                <!-- Pokemon List Items -->
                 <app-pokemon-list-item
                     *ngFor="let pokemon of filteredPokemon"
                     [pokemon]="pokemon">
                 </app-pokemon-list-item>
-
-                <!-- Pagination -->
-                <mat-paginator
-                    #paginator
-                    showFirstLastButtons
-                    [length]="filteredPokemonCount$ | async"
-                    [pageSize]="pageSize"
-                    [pageSizeOptions]="[1, 2, 3, 4, 5]"
-                    (page)="pageEvent = $event; onPaginateChange($event)">
-                </mat-paginator>
-
             </div>
-        </ng-container>
 
+            <mat-paginator
+                #paginator
+                showFirstLastButtons
+                [length]="filteredPokemonCount$ | async"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="[1, 2, 3, 4, 5]"
+                (page)="pageEvent = $event; onPaginateChange($event)">
+            </mat-paginator>
+        </ng-container>
     </div>
 
 </app-nav-wrapper>
