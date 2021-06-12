@@ -5,6 +5,7 @@
                 type="text"
                 matInput
                 placeholder="Search for a Pokémon e.g. Charizard"
+                debounce="2000"
                 [(ngModel)]="searchQuery"
                 (onDebounce)="onSearchFilterChange($event)" />
         </mat-form-field>

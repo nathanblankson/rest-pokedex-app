@@ -23,7 +23,7 @@ export class PokemonComponent implements OnInit {
 
     @ViewChild('paginator') public paginator: MatPaginator;
     public pageEvent: PageEvent;
-    public pageSize: number = 2;
+    public pageSize: number = 1;
     public currentPageIndex: number = 0;
 
     constructor(private store: Store) {

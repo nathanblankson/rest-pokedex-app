@@ -1,7 +1,5 @@
-<div class="pokemon pokemon--caught">
-
+<div class="pokemon">
     <div class="clickable-area" [routerLink]="pokemon.name | lowercase">
-
         <h3 class="pokemon__id">{{ pokemon.id }}</h3>
 
         <div class="pokemon__left">
@@ -34,18 +32,14 @@
             </div>
 
         </div>
-
     </div>
 
     <div class="pokemon__actions">
-
         <app-pokemon-wishlist-button
             [isWishlisted]="isWishlisted$ | async"
             (isWishlistedEvent)="isWishlistedEmitted($event)">
         </app-pokemon-wishlist-button>
 
         <i class="fas fa-star"></i>
-
     </div>
-
 </div>
