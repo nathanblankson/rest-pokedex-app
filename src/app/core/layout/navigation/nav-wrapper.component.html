@@ -1,29 +1,26 @@
 <div class="container">
-
     <mat-sidenav-container>
-
-        <mat-sidenav [opened]="true" [mode]="'side'">
-
+        <mat-sidenav
+            #sidenav
+            [opened]="true"
+            [mode]="mobileQuery.matches? 'over' : 'side'"
+            [fixedInViewport]="mobileQuery.matches">
             <!-- Logo -->
             <img class="brand" src="/assets/images/pokeball.svg" alt="Pokéball" routerLink="/">
 
             <!-- Top links -->
             <app-nav-links></app-nav-links>
-
         </mat-sidenav>
 
         <mat-sidenav-content>
-
             <!-- Toolbar -->
-            <app-nav-toolbar></app-nav-toolbar>
+            <app-nav-toolbar (toggleSidenavEvent)="toggleSidenavEmitted($event)">
+            </app-nav-toolbar>
 
             <!-- Content -->
             <div class="content">
                 <ng-content></ng-content>
             </div>
-
         </mat-sidenav-content>
-
     </mat-sidenav-container>
-
 </div>

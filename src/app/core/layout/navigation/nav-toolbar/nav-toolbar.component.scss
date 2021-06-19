@@ -1,8 +1,27 @@
 @import 'colors';
 
-mat-toolbar {
+.toolbar {
     position: fixed;
     top: 0;
     z-index: 999;
     background-color: $red;
+
+    i {
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    .brand {
+        display: flex;
+        align-items: baseline;
+
+        &__name {
+            margin-right: 5px;
+        }
+
+        &__slogan {
+            font-size: 12px;
+        }
+    }
+
 }

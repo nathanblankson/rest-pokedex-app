@@ -49,6 +49,11 @@
         align-items: center;
         position: relative;
         width: 100px;
+        margin-bottom: 25px;
+
+        @media only screen and (min-width: 600px) {
+            margin-bottom: 0;
+        }
 
         .image {
             width: 90%;
@@ -75,7 +80,7 @@
 
         @media only screen and (min-width: 600px) {
             gap: 0;
-            padding: 10pxs;
+            padding: 10px;
         }
 
         .name {
