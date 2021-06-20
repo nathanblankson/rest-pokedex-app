@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-    title = 'rest-pokedex-app';
+    public title = 'rest-pokedex-app';
 
 }

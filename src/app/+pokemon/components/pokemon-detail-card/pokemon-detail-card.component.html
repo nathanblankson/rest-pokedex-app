@@ -2,8 +2,9 @@
 
     <mat-expansion-panel
         class="pokemon-detail-card"
+        [expanded]="isExpanded"
         togglePosition="before"
-        [hideToggle]="hideToggle"
+        [hideToggle]="isToggleHidden"
         [ngClass]="{'pokemon-detail-card--has-border': hasBorder}">
 
         <mat-expansion-panel-header class="pokemon-detail-card__header">

@@ -1,67 +1,59 @@
 <app-nav-wrapper>
-
     <div class="container">
-
         <!-- Top -->
-        <div class="top">
-            <div class="top__image">
+        <div class="pokemon">
+            <div class="pokemon__image">
                 <img class="image"
                     [src]="'https://pokeres.bastionbot.org/images/pokemon/1.png'"
                     [alt]="'bulbasaur' | titlecase">
-                <img *ngIf="true" class="stamp" [src]="'/assets/images/pokeball.svg'">
+                <img class="stamp" [src]="'/assets/images/pokeball.svg'">
             </div>
-            <div class="top__info">
+            <div class="pokemon__info">
                 <h2 class="name">{{ 'Bulbasaur' | titlecase }}</h2>
                 <h1 class="id">{{ '#1' }}</h1>
             </div>
         </div>
 
-        <!-- Info -->
-        <div class="details">
-
-            <div class="details__left">
-
-                <!-- Types -->
-                <div class="types">
-                    <app-pokemon-detail-card
-                        panelTitle="Pokémon type"
-                        [hideToggle]>
-                        <div class="types__pills flex-row">
-                            <app-pokemon-type-pill
-                                *ngFor="let type of pokemon.types"
-                                [type]="type">
-                            </app-pokemon-type-pill>
-                        </div>
-                        <div class="flex-row">
-                            <!-- TODO: Effective against -->
-
-                            <!-- TODO: Vulnerable to -->
-                        </div>
-                    </app-pokemon-detail-card>
-                </div>
-
-            </div>
-
-            <div class="details__right">
-
-                <!-- Base Stats -->
-                <div class="stats">
-                    <app-pokemon-detail-card panelTitle="Pokémon stats">
-                        <div
-                            *ngFor="let stat of pokemon.stats"
-                            class="flex-row">
-                            <app-pokemon-stat-bar [stat]="stat"></app-pokemon-stat-bar>
-                        </div>
-                        <div class="flex-row">
-
-                        </div>
-                    </app-pokemon-detail-card>
-                </div>
-
-            </div>
-
+        <!-- Table of contents -->
+        <div class="table-of-contents">
+            <p class="table-of-contents__heading">Table of contents</p>
+            <ul class="table-of-contents__list">
+                <li class="list-item">
+                    <a (click)="onClickAnchor('pokemon-type')">Pokémon type</a>
+                </li>
+                <li class="list-item">
+                    <a (click)="onClickAnchor('pokemon-stats')">Pokémon stats</a>
+                </li>
+            </ul>
         </div>
 
-    </div>
+        <!-- Info -->
+        <div class="pokemon-details">
+            <div class="pokemon-details__left-column">
+                <!-- Types -->
+                <app-pokemon-detail-card id="pokemon-type" class="pokemon-type" panelTitle="Pokémon type">
+                    <div class="pokemon-type__pills flex-row">
+                        <app-pokemon-type-pill
+                            *ngFor="let type of pokemon.types"
+                            [type]="type">
+                        </app-pokemon-type-pill>
+                    </div>
+                    <div class="flex-row">
+                        <!-- TODO: Effective against -->
 
+                        <!-- TODO: Vulnerable to -->
+                    </div>
+                </app-pokemon-detail-card>
+            </div>
+
+            <div class="pokemon-details__right-column">
+                <!-- Base Stats -->
+                <app-pokemon-detail-card id="pokemon-stats" class="pokemon-stats" panelTitle="Pokémon stats">
+                    <div class="pokemon-stats__bars flex-row">
+                        <app-pokemon-stat-bar *ngFor="let stat of pokemon.stats" [stat]="stat"></app-pokemon-stat-bar>
+                    </div>
+                </app-pokemon-detail-card>
+            </div>
+        </div>
+    </div>
 </app-nav-wrapper>

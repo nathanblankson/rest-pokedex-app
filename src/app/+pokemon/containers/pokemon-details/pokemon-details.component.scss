@@ -11,7 +11,7 @@
         padding: 80px 40px;
     }
 
-    .top {
+    .pokemon {
         display: flex;
         justify-content: center;
         align-items: flex-start;
@@ -49,7 +49,43 @@
         }
     }
 
-    .details {
+    .table-of-contents {
+        width: 300px;
+        margin-bottom: 20px;
+        padding: 20px;
+        box-shadow: 0 1px 5px rgb(0 0 0 / 10%);
+
+        &__heading {
+            margin-bottom: 15px;
+        }
+
+        &__list {
+            font-size: 14px;
+            list-style-type: none;
+
+            .list-item {
+                padding-left: 40px;
+                text-indent: -20px;
+
+                &:before {
+                    content: '\2014';
+                    position: absolute;
+                }
+
+                a {
+                    color: $link-blue;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+
+                + .list-item {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+
+    .pokemon-details {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -60,24 +96,37 @@
             flex-direction: row;
         }
 
-        &__left {
+        &__left-column {
             flex: 1;
 
-            .types {
-                background-color: pink;
+            .pokemon-type {
 
                 &__pills {
                     justify-content: center;
                     gap: 5px;
+
+                    ::ng-deep {
+
+                        app-pokemon-type-pill {
+
+                            .pill {
+                                padding: 6px 30px;
+                            }
+                        }
+                    }
                 }
             }
         }
 
-        &__right {
+        &__right-column {
             flex: 1;
 
-            .stats {
-                background-color: green;
+            .pokemon-stats {
+
+                &__bars {
+                    flex-direction: column;
+                    align-items: center;
+                }
             }
         }
 

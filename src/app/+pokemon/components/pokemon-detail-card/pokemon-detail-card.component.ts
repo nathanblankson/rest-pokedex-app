@@ -8,10 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PokemonDetailCardComponent implements OnInit {
 
     @Input()
+    public isExpanded: boolean = true;
+
+    @Input()
     public panelTitle: string;
 
     @Input()
-    public hideToggle: boolean = false;
+    public isToggleHidden: boolean = false;
 
     @Input()
     public hasBorder: boolean = true;

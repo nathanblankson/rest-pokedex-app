@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Pokemon } from '../../../core/models/pokemon.model';
+import { ViewportScroller } from '@angular/common';
+import { ActivatedRoute, Router, Scroll } from '@angular/router';
+
+import { Pokemon } from '@core/models/pokemon.model';
+import { filter } from 'rxjs/operators';
 
 @Component({
     selector: 'app-pokemon-details',
@@ -10483,9 +10486,20 @@ export class PokemonDetailsComponent implements OnInit {
         "image_url": "https://pokeres.bastionbot.org/images/pokemon/1.png"
     };
 
-    constructor(private route: ActivatedRoute) { }
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private scroller: ViewportScroller
+    ) { }
 
-    public ngOnInit(): void {
+    public ngOnInit(): void { }
+
+    public onClickAnchor(id: string) {
+        const element = document.getElementById(id);
+        if (!element) {
+            return;
+        }
+        element.scrollIntoView();
     }
 
 }
