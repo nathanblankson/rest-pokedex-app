@@ -10,7 +10,10 @@ import { Pokeapi } from '@core/models/pokeapi.model';
 export class PokemonStatBarComponent implements OnInit {
 
     @Input()
-    public stat: Pokeapi.IPokemonStat
+    public pokemonStat: Pokeapi.IPokemonStat;
+
+    @Input()
+    public shouldAnimateProgressBar: boolean = true;
 
     constructor() { }
 

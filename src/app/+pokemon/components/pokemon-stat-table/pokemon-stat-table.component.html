@@ -1,0 +1,9 @@
+<table class="pokemon-stat-table">
+    <tr *ngFor="let pokemonStat of pokemonStats">
+        <td class="pokemon-stat-table__name">{{ pokemonStat.stat.name | uppercase }}</td>
+        <td class="pokemon-stat-table__bar">
+            <app-pokemon-stat-bar [pokemonStat]="pokemonStat"></app-pokemon-stat-bar>
+        </td>
+        <td class="pokemon-stat-table__value">{{ pokemonStat.base_stat }}</td>
+    </tr>
+</table>

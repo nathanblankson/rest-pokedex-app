@@ -1,60 +1,47 @@
 @import 'colors';
 
-.stat {
-    display: flex;
-    align-items: center;
-    width: 300px;
-    font-size: 14px;
+.pokemon-stat-bar {
+    height: 7px;
+    border-radius: 10px;
 
-    &__name, &__value {
-        flex: 1;
+    &--hp {
+        ::ng-deep {
+            // The 'fill' colour
+            .mat-progress-bar-fill::after {
+                background-color: $grass;
+            }
+
+            // The 'background' colour
+            .mat-progress-bar-buffer {
+                background-color: lighten($grass, 20);
+            }
+        }
     }
 
-    &__bar {
-        flex: 2;
-        height: 7px;
-        margin: 0 20px 0 10px;
-        border-radius: 10px;
+    &--attack {
+        ::ng-deep {
+            // The 'fill' colour
+            .mat-progress-bar-fill::after {
+                background-color: $red;
+            }
 
-        &--hp {
-            ::ng-deep {
-                // The 'fill' colour
-                .mat-progress-bar-fill::after {
-                    background-color: $grass;
-                }
-
-                // The 'background' colour
-                .mat-progress-bar-buffer {
-                    background-color: lighten($grass, 20);
-                }
+            // The 'background' colour
+            .mat-progress-bar-buffer {
+                background-color: lighten($red, 30);
             }
         }
+    }
 
-        &--attack {
-            ::ng-deep {
-                // The 'fill' colour
-                .mat-progress-bar-fill::after {
-                    background-color: $red;
-                }
-
-                // The 'background' colour
-                .mat-progress-bar-buffer {
-                    background-color: lighten($red, 30);
-                }
+    &--defense {
+        ::ng-deep {
+            // The 'fill' colour
+            .mat-progress-bar-fill::after {
+                background-color: $water;
             }
-        }
 
-        &--defense {
-            ::ng-deep {
-                // The 'fill' colour
-                .mat-progress-bar-fill::after {
-                    background-color: $water;
-                }
-
-                // The 'background' colour
-                .mat-progress-bar-buffer {
-                    background-color: lighten($water, 20);
-                }
+            // The 'background' colour
+            .mat-progress-bar-buffer {
+                background-color: lighten($water, 20);
             }
         }
     }

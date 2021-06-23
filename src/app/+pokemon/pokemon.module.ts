@@ -15,6 +15,7 @@ import { PokemonComponent } from './containers/pokemon/pokemon.component';
 import { PokemonListItemComponent } from './components/pokemon-list-item/pokemon-list-item.component';
 import { PokemonTypePillComponent } from './components/pokemon-type-pill/pokemon-type-pill.component';
 import { PokemonStatBarComponent } from './components/pokemon-stat-bar/pokemon-stat-bar.component';
+import { PokemonStatTableComponent } from './components/pokemon-stat-table/pokemon-stat-table.component';
 import { PokemonWishlistButtonComponent } from './components/pokemon-wishlist-button/pokemon-wishlist-button.component';
 import { PokemonDetailsComponent } from './containers/pokemon-details/pokemon-details.component';
 import { PokemonDetailCardComponent } from './components/pokemon-detail-card/pokemon-detail-card.component';
@@ -46,6 +47,7 @@ import { DebounceDirective } from '../shared/directives/debounce/debounce.direct
         PokemonListItemComponent,
         PokemonTypePillComponent,
         PokemonStatBarComponent,
+        PokemonStatTableComponent,
         PokemonWishlistButtonComponent,
         PokemonDetailsComponent,
         PokemonDetailCardComponent

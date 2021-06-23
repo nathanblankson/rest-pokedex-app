@@ -1,6 +1,7 @@
 <div class="pokemon">
+    <h3 class="pokemon__id">{{ pokemon.id }}</h3>
+
     <div class="clickable-area" [routerLink]="pokemon.name | lowercase">
-        <h3 class="pokemon__id">{{ pokemon.id }}</h3>
 
         <div class="pokemon__left">
             <img class="image" [src]="pokemon.image_url" [alt]="pokemon.name | titlecase">
@@ -13,10 +14,7 @@
             <h3 class="name">{{ pokemon.name | titlecase }}</h3>
 
             <div class="stats">
-                <app-pokemon-stat-bar
-                    *ngFor="let stat of pokemon.stats | slice:0:3"
-                    [stat]="stat">
-                </app-pokemon-stat-bar>
+                <app-pokemon-stat-table [pokemonStats]="pokemon.stats | slice:0:3"></app-pokemon-stat-table>
             </div>
 
             <div class="types">

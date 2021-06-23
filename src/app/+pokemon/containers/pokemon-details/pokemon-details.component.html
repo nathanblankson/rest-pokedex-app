@@ -3,9 +3,9 @@
         <!-- Top -->
         <div class="pokemon">
             <div class="pokemon__image">
-                <img class="image"
+                <!-- <img class="image"
                     [src]="'https://pokeres.bastionbot.org/images/pokemon/1.png'"
-                    [alt]="'bulbasaur' | titlecase">
+                    [alt]="'bulbasaur' | titlecase"> -->
                 <img class="stamp" [src]="'/assets/images/pokeball.svg'">
             </div>
             <div class="pokemon__info">
@@ -49,8 +49,8 @@
             <div class="pokemon-details__right-column">
                 <!-- Base Stats -->
                 <app-pokemon-detail-card id="pokemon-stats" class="pokemon-stats" panelTitle="Pokémon stats">
-                    <div class="pokemon-stats__bars flex-row">
-                        <app-pokemon-stat-bar *ngFor="let stat of pokemon.stats" [stat]="stat"></app-pokemon-stat-bar>
+                    <div class="pokemon-stats__bars">
+                        <app-pokemon-stat-table [pokemonStats]="pokemon.stats"></app-pokemon-stat-table>
                     </div>
                 </app-pokemon-detail-card>
             </div>
