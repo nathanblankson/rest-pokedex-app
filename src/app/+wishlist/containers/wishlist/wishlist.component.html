@@ -1,19 +1,25 @@
 <app-nav-wrapper>
+    <ng-container *ngIf="(wishlistedPokemon$ | async) as wishlistedPokemon; else noWishlistedPokemon">
+        <div class="container">
 
-    <div class="container">
-
-        <div *ngIf="wishlistedPokemon$ | async as wishlistedPokemon">
-
-            <!-- Pokemon List -->
             <div class="pokemon-list">
+                <!-- <app-pokemon-list-item
+                    *ngFor="let pokemon of wishlistedPokemon.pokemon"
+                    [pokemon]="pokemon">
+                </app-pokemon-list-item> -->
                 <app-pokemon-list-item
-                    *ngFor="let pokemon of wishlistedPokemon?.pokemons"
+                    *ngFor="let pokemon of wishlistedPokemon"
                     [pokemon]="pokemon">
                 </app-pokemon-list-item>
             </div>
-
         </div>
-
-    </div>
-
+    </ng-container>
 </app-nav-wrapper>
+
+<ng-template #noWishlistedPokemon>
+    <div class="full-page-message">
+        <img src="/assets/images/snorlax-sleep.gif" alt="Sleeping snorlax">
+        <p class="full-page-message__heading">Looks like you have not wishlisted any Pokémon!</p>
+        <p class="full-page-message__subheading">Well... what are you waiting for... gotta wishlist 'em all!</p>
+    </div>
+</ng-template>

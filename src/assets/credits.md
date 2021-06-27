@@ -7,3 +7,7 @@ Edited By: Nathan Blankson using https://www.vectorizer.io/
 ### Pokemon type icons
 
 Original Source: https://github.com/duiker101/pokemon-type-svg-icons
+
+### Sleeping snorlax GIF
+
+Original Source: https://media.giphy.com/media/q4cijbInLn5xm/200w.gif

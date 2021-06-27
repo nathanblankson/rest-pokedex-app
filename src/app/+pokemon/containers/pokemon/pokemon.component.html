@@ -10,7 +10,7 @@
                 (onDebounce)="onSearchFilterChange($event)" />
         </mat-form-field>
 
-        <ng-container *ngIf="filteredPokemon$ | async as filteredPokemon">
+        <ng-container *ngIf="(filteredPokemon$ | async) as filteredPokemon">
             <div class="pokemon-list">
                 <app-pokemon-list-item
                     *ngFor="let pokemon of filteredPokemon"
