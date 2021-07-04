@@ -9,8 +9,8 @@
                 <img class="stamp" [src]="'/assets/images/pokeball.svg'">
             </div>
             <div class="pokemon__info">
-                <h2 class="name">{{ 'Bulbasaur' | titlecase }}</h2>
-                <h1 class="id">{{ '#1' }}</h1>
+                <h2 class="name">{{ pokemon.name | titlecase }}</h2>
+                <h1 class="id">{{ '#' + pokemon.id }}</h1>
             </div>
         </div>
 

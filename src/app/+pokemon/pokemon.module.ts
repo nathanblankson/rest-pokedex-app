@@ -19,7 +19,7 @@ import { PokemonStatTableComponent } from './components/pokemon-stat-table/pokem
 import { PokemonWishlistButtonComponent } from './components/pokemon-wishlist-button/pokemon-wishlist-button.component';
 import { PokemonDetailsComponent } from './containers/pokemon-details/pokemon-details.component';
 import { PokemonDetailCardComponent } from './components/pokemon-detail-card/pokemon-detail-card.component';
-
+import { PokemonStatPipe } from './pipes/pokemon-stat/pokemon-stat.pipe';
 
 import { DebounceDirective } from '../shared/directives/debounce/debounce.directive';
 
@@ -50,7 +50,8 @@ import { DebounceDirective } from '../shared/directives/debounce/debounce.direct
         PokemonStatTableComponent,
         PokemonWishlistButtonComponent,
         PokemonDetailsComponent,
-        PokemonDetailCardComponent
+        PokemonDetailCardComponent,
+        PokemonStatPipe
     ]
 })
 export class PokemonModule { }

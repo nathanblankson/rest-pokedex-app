@@ -1,48 +1,44 @@
 @import 'colors';
 
+@mixin pokemon-stat-bar-color($color, $lighten: 20) {
+    ::ng-deep {
+        // The 'fill' color
+        .mat-progress-bar-fill::after {
+            background-color: $color;
+        }
+
+        // The 'background' color
+        .mat-progress-bar-buffer {
+            background-color: lighten($color, $lighten);
+        }
+    }
+}
+
 .pokemon-stat-bar {
     height: 7px;
     border-radius: 10px;
 
     &--hp {
-        ::ng-deep {
-            // The 'fill' colour
-            .mat-progress-bar-fill::after {
-                background-color: $grass;
-            }
-
-            // The 'background' colour
-            .mat-progress-bar-buffer {
-                background-color: lighten($grass, 20);
-            }
-        }
+        @include pokemon-stat-bar-color($grass);
     }
 
     &--attack {
-        ::ng-deep {
-            // The 'fill' colour
-            .mat-progress-bar-fill::after {
-                background-color: $red;
-            }
-
-            // The 'background' colour
-            .mat-progress-bar-buffer {
-                background-color: lighten($red, 30);
-            }
-        }
+        @include pokemon-stat-bar-color($red, 30);
     }
 
     &--defense {
-        ::ng-deep {
-            // The 'fill' colour
-            .mat-progress-bar-fill::after {
-                background-color: $water;
-            }
+        @include pokemon-stat-bar-color($water);
+    }
 
-            // The 'background' colour
-            .mat-progress-bar-buffer {
-                background-color: lighten($water, 20);
-            }
-        }
+    &--special-attack {
+        @include pokemon-stat-bar-color($boston-university-red, 40);
+    }
+
+    &--special-defense {
+        @include pokemon-stat-bar-color($special-defense-blue, 30);
+    }
+
+    &--speed {
+        @include pokemon-stat-bar-color($ground, 15);
     }
 }
