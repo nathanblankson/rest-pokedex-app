@@ -72,12 +72,20 @@ export class PokeapiService extends BaseHttp {
         return this.http.get<Pokeapi.IPokemon>(url);
     }
 
+    public getPokemonDetailsByName(name: string): Observable<Pokemon.IPokemon> {
+        return this.getPokemonByName(name).pipe(
+            map((pokemon: Pokeapi.IPokemon) => {
+                return Pokemon.parsePokemonFromPokeapi(pokemon);
+            })
+        );
+    }
+
     public getMultiplePokemonByName(names: string[]): Observable<Pokemon.IPokemon[]> {
         return from(names).pipe(
             mergeMap((name: string) => {
                 return this.getPokemonByName(name).pipe(
                     map((pokemon: Pokeapi.IPokemon) => {
-                        return Pokemon.parsePokemonFromPokeapi(pokemon) // attaches the image url from bastionbot
+                        return Pokemon.parsePokemonFromPokeapi(pokemon);
                     })
                 );
             }),

@@ -1,11 +1,11 @@
 <app-nav-wrapper>
-    <div class="container">
+    <div *ngIf="pokemon" class="container">
         <!-- Top -->
         <div class="pokemon">
             <div class="pokemon__image">
-                <!-- <img class="image"
-                    [src]="'https://pokeres.bastionbot.org/images/pokemon/1.png'"
-                    [alt]="'bulbasaur' | titlecase"> -->
+                <img class="image"
+                    [src]="pokemon.image_url"
+                    [alt]="pokemon.name | titlecase">
                 <img class="stamp" [src]="'/assets/images/pokeball.svg'">
             </div>
             <div class="pokemon__info">

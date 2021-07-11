@@ -16,12 +16,12 @@ export class PokeapiResourceListResolver implements Resolve<Observable<Pokeapi.I
         return this.store.select(PokemonState.pokemonResourceList)
             .pipe(
                 tap((pokemonResourceList) => {
-                    if (pokemonResourceList === null) {
+                    if (pokemonResourceList === null || pokemonResourceList === undefined) {
                         const params: Pokeapi.IPageParams = { limit: 10000, offset: 0 };
                         this.store.dispatch(new GetPokemonResourceList(params));
                     }
                 }),
-                filter((pokemonResourceList) => pokemonResourceList !== null),
+                filter((pokemonResourceList) => pokemonResourceList !== null && pokemonResourceList !== undefined),
                 take(1)
             );
     }

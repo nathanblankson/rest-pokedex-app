@@ -6,9 +6,12 @@ import { Pokeapi } from '@core/models/pokeapi.model';
 import { Pokemon } from '@core/models/pokemon.model';
 import { PokeapiService } from '@core/services/pokeapi/pokeapi.service';
 import {
+    GetPokemonDetails,
+    GetPokemonDetailsFail,
     GetPokemonDetailsList,
     GetPokemonDetailsListFail,
     GetPokemonDetailsListSuccess,
+    GetPokemonDetailsSuccess,
     GetPokemonResourceList,
     GetPokemonResourceListFail,
     GetPokemonResourceListSuccess
@@ -65,6 +68,20 @@ export class PokemonState {
         });
     }
 
+    public static getPokemonDetailsByName(name: string) {
+        return createSelector([PokemonState], (pokemonState: IPokemonStateModel): Pokemon.IPokemon => {
+            const adaptedName = name.toLowerCase();
+
+            const matchInResourceList = pokemonState.pokemonResourceList.results
+                .find((resource: Pokeapi.INamedApiResource) => resource.name === adaptedName)
+
+            const matchInDetailsList = pokemonState.pokemonDetailsList
+                .find((pokemon: Pokemon.IPokemon) => pokemon.name === matchInResourceList.name);
+
+            return matchInDetailsList;
+        });
+    }
+
     constructor(private pokeapiService: PokeapiService) { }
 
     @Action(GetPokemonResourceList)
@@ -95,6 +112,54 @@ export class PokemonState {
         console.log(payload);
     }
 
+    @Action(GetPokemonDetails)
+    public getPokemonDetails(
+        { getState, dispatch }: StateContext<IPokemonStateModel>,
+        { payload }: GetPokemonDetails
+    ) {
+        const adaptedName = payload.name.toLowerCase();
+        const pokemonInResourceList = getState().pokemonResourceList;
+        const pokemonInDetailsList = getState().pokemonDetailsList;
+
+        const matchInResourceList = pokemonInResourceList.results
+            .find((resource: Pokeapi.INamedApiResource) => resource.name === adaptedName);
+
+        const matchInDetailsList = pokemonInDetailsList
+            .find((pokemon: Pokemon.IPokemon) => pokemon.name === matchInResourceList.name);
+
+        if (!!matchInDetailsList) {
+            return true;
+        }
+
+        return this.pokeapiService.getPokemonDetailsByName(adaptedName).pipe(
+            tap((result: Pokemon.IPokemon) => {
+                dispatch(new GetPokemonDetailsSuccess(result));
+            }),
+            catchError(() => dispatch(new GetPokemonDetailsFail({ error })))
+        );
+    }
+
+    @Action(GetPokemonDetailsSuccess)
+    public getPokemonDetailsSuccess(
+        { getState, patchState }: StateContext<IPokemonStateModel>,
+        { payload }: GetPokemonDetailsSuccess
+    ) {
+        const pokemonInDetailsList = getState().pokemonDetailsList;
+        pokemonInDetailsList.push(payload);
+        const updatedPokemonDetailsList = Pokemon.sortPokemonById(pokemonInDetailsList);
+
+        patchState({
+            pokemonDetailsList: updatedPokemonDetailsList
+        });
+    }
+
+    @Action(GetPokemonDetailsFail)
+    public getPokemonDetailsFail(
+        { payload }: GetPokemonDetailsFail
+    ) {
+        console.log(payload);
+    }
+
     @Action(GetPokemonDetailsList)
     public getPokemonDetailsList(
         { getState, dispatch }: StateContext<IPokemonStateModel>,
@@ -102,7 +167,6 @@ export class PokemonState {
     ) {
         const { start, end, pageSize } = payload.params;
         const adaptedSearchQuery = payload.searchQuery.toLowerCase();
-
         const pokemonInResourceList = getState().pokemonResourceList;
         const pokemonInDetailsList = getState().pokemonDetailsList;
 
@@ -142,6 +206,7 @@ export class PokemonState {
     ) {
         const pokemonInDetailsList = getState().pokemonDetailsList;
         const updatedPokemonDetailsList = Pokemon.sortPokemonById([...pokemonInDetailsList, ...payload]);
+
         patchState({
             pokemonDetailsList: updatedPokemonDetailsList
         });

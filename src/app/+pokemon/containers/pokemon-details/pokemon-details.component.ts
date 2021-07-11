@@ -13,7 +13,7 @@ import { filter } from 'rxjs/operators';
 export class PokemonDetailsComponent implements OnInit {
 
     // TODO: Delete me
-    pokemon: Pokemon.IPokemon = {
+    pokemona: Pokemon.IPokemon = {
         "abilities": [
             {
                 "ability": {
@@ -10486,13 +10486,13 @@ export class PokemonDetailsComponent implements OnInit {
         "image_url": "https://pokeres.bastionbot.org/images/pokemon/1.png"
     };
 
-    constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private scroller: ViewportScroller
-    ) { }
+    pokemon: Pokemon.IPokemon = null;
 
-    public ngOnInit(): void { }
+    constructor(private route: ActivatedRoute) { }
+
+    public ngOnInit(): void {
+        this.pokemon = this.route.snapshot.data.pokemon
+    }
 
     public onClickAnchor(id: string) {
         const element = document.getElementById(id);

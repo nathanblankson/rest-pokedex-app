@@ -32,7 +32,7 @@ export class PokemonComponent implements OnInit {
 
     public ngOnInit(): void { }
 
-    public onSearchFilterChange(): void {
+    public onSearchFilterChange(value: string): void {
         if (this.currentPageIndex !== 0) {
             this.paginator.firstPage();
         } else {
