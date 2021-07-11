@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { PokeapiResourceListResolver } from '@core/resolvers/pokeapi-resource-list.resolver';
+
 const routes: Routes = [
     {
         path: 'pokemon',
-        loadChildren: () => import('@pokemon/pokemon.module').then((m) => m.PokemonModule)
+        loadChildren: () => import('@pokemon/pokemon.module').then((m) => m.PokemonModule),
+        resolve: [PokeapiResourceListResolver]
     },
     {
         path: 'wishlist',
-        loadChildren: () => import('./+wishlist/wishlist.module').then((m) => m.WishlistModule)
+        loadChildren: () => import('./+wishlist/wishlist.module').then((m) => m.WishlistModule),
+        resolve: [PokeapiResourceListResolver]
     },
     {
         path: '**',
@@ -18,6 +22,7 @@ const routes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
+    providers: [PokeapiResourceListResolver],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }
