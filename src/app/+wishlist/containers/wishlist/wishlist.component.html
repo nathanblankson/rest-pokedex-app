@@ -2,10 +2,6 @@
     <ng-container *ngIf="(wishlistedPokemon$ | async) as wishlistedPokemon; else noWishlistedPokemon">
         <div class="container">
             <div class="pokemon-list">
-                <!-- <app-pokemon-list-item
-                    *ngFor="let pokemon of wishlistedPokemon.pokemon"
-                    [pokemon]="pokemon">
-                </app-pokemon-list-item> -->
                 <app-pokemon-list-item
                     *ngFor="let pokemon of wishlistedPokemon"
                     [pokemon]="pokemon">

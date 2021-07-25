@@ -21,8 +21,8 @@ const defaultWishlistState: IWishlistStateModel = {
 export class WishlistState {
 
     @Selector()
-    public static wishlistedPokemon(state: IWishlistStateModel): IWishlistStateModel {
-        return state;
+    public static wishlistedPokemon(state: IWishlistStateModel): Pokemon.IPokemon[] {
+        return state.pokemons;
     }
 
     public static isPokemonWishlisted(id: number) {
