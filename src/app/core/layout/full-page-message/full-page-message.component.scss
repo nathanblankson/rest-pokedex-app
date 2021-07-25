@@ -1,0 +1,18 @@
+.full-page-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+    text-align: center;
+
+    &__heading {
+        margin-top: 5px;
+        font-size: 22px;
+    }
+
+    &__subheading {
+        margin-top: 10px;
+        font-size: 18px;
+    }
+}

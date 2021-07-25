@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { NavWrapperComponent } from './navigation/nav-wrapper.component';
 import { NavToolbarComponent } from './navigation/nav-toolbar/nav-toolbar.component';
 import { NavLinksComponent } from './navigation/nav-links/nav-links.component';
+import { FullPageMessageComponent } from './full-page-message/full-page-message.component';
 
 @NgModule({
     imports: [
@@ -18,12 +19,14 @@ import { NavLinksComponent } from './navigation/nav-links/nav-links.component';
         RouterModule
     ],
     exports: [
-        NavWrapperComponent
+        NavWrapperComponent,
+        FullPageMessageComponent
     ],
     declarations: [
         NavWrapperComponent,
         NavToolbarComponent,
-        NavLinksComponent
+        NavLinksComponent,
+        FullPageMessageComponent
     ]
 })
 export class LayoutModule { }

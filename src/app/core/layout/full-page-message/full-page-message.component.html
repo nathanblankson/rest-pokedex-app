@@ -1,0 +1,5 @@
+<div class="full-page-message">
+    <img *ngIf="messageData.image" [src]="messageData.image.src" [alt]="messageData.image.alt">
+    <p class="full-page-message__heading">{{ messageData.heading }}</p>
+    <p *ngIf="messageData.subheading" class="full-page-message__subheading">{{ messageData.subheading }}</p>
+</div>

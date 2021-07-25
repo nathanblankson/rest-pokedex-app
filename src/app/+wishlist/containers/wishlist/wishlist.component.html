@@ -12,9 +12,6 @@
 </app-nav-wrapper>
 
 <ng-template #noWishlistedPokemon>
-    <div class="full-page-message">
-        <img src="/assets/images/snorlax-sleep.gif" alt="Sleeping snorlax">
-        <p class="full-page-message__heading">Looks like you have not wishlisted any Pokémon!</p>
-        <p class="full-page-message__subheading">Well... what are you waiting for... gotta wishlist 'em all!</p>
-    </div>
+    <app-full-page-message [messageData]="noWishlistedPokemonMessage">
+    </app-full-page-message>
 </ng-template>

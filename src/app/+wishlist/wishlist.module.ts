@@ -6,7 +6,6 @@ import { WishlistRoutingModule } from './wishlist-routing.module';
 import { PokemonModule } from '@pokemon/pokemon.module';
 import { WishlistComponent } from './containers/wishlist/wishlist.component';
 
-
 @NgModule({
     imports: [
         CommonModule,
