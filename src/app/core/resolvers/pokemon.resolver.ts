@@ -28,11 +28,11 @@ export class PokemonResolver implements Resolve<Observable<Pokemon.IPokemon>> {
                     take(1)
                 );
         } else {
-            throwError(this._handleError());
+            throwError(this.handleError());
         }
     }
 
-    private _handleError(): boolean {
+    private handleError(): boolean {
         // this.store.dispatch(new HideFullScreenLoading()); TODO: add full screen loader and hide
         // this.store.dispatch(new Navigate({ command: ['/error'] })); TODO: create error page and navigate
         return false;

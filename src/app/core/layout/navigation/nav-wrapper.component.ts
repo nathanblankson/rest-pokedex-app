@@ -15,12 +15,12 @@ export class NavWrapperComponent implements OnInit, OnDestroy {
 
     public mobileQuery: MediaQueryList;
 
-    private _mobileQueryListener: () => void;
+    private mobileQueryListener: () => void;
 
     constructor(private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher) {
         this.mobileQuery = media.matchMedia('(max-width: 600px)');
-        this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-        this.mobileQuery.addListener(this._mobileQueryListener);
+        this.mobileQueryListener = () => changeDetectorRef.detectChanges();
+        this.mobileQuery.addListener(this.mobileQueryListener);
     }
 
     public ngOnInit(): void {
@@ -31,7 +31,7 @@ export class NavWrapperComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.mobileQuery.removeListener(this._mobileQueryListener);
+        this.mobileQuery.removeListener(this.mobileQueryListener);
     }
 
 }

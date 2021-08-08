@@ -25,24 +25,15 @@ export class PokemonStatBarComponent implements OnInit {
     constructor() { }
 
     public ngOnInit(): void {
-        this._initProgressBar();
+        this.initProgressBar();
     }
 
-    private _initProgressBar() {
+    private initProgressBar(): void {
         this.targetProgress = this.pokemonStat.base_stat;
 
         if (!this.shouldAnimateProgressBar) {
             this.currentProgress = this.targetProgress;
         } else {
-            // const timer$ = interval(this.timeToFillProgress);
-            // const sub = timer$.subscribe((val) => {
-            //     this.currentProgress = val;
-
-            //     if (this.currentProgress >= this.targetProgress) {
-            //         sub.unsubscribe();
-            //     }
-            // });
-
             interval(this.timeToFillProgress).pipe(
                 takeWhile(() => this.currentProgress < this.targetProgress),
                 tap(() => this.currentProgress++)

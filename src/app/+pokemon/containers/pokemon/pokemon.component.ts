@@ -27,7 +27,7 @@ export class PokemonComponent implements OnInit {
     public currentPageIndex: number = 0;
 
     constructor(private store: Store) {
-        this._fetchPokemon();
+        this.fetchPokemon();
     }
 
     public ngOnInit(): void { }
@@ -36,17 +36,17 @@ export class PokemonComponent implements OnInit {
         if (this.currentPageIndex !== 0) {
             this.paginator.firstPage();
         } else {
-            this._fetchPokemon();
+            this.fetchPokemon();
         }
     }
 
     public onPaginateChange(event: PageEvent): void {
         this.currentPageIndex = event.pageIndex;
         this.pageSize = event.pageSize;
-        this._fetchPokemon();
+        this.fetchPokemon();
     }
 
-    private _fetchPokemon(): void {
+    private fetchPokemon(): void {
         const start = this.currentPageIndex * this.pageSize;
         const end = (this.currentPageIndex + 1) * this.pageSize;
 
