@@ -36,25 +36,17 @@ export class PokeapiService extends BaseHttp {
 
     public getPokemonDetailsByName(name: string): Observable<Pokemon.IPokemon> {
         return this.getPokemonByName(name).pipe(
-            map((pokemon: Pokeapi.IPokemon) => {
-                return Pokemon.parsePokemonFromPokeapi(pokemon);
-            })
+            map((pokemon: Pokeapi.IPokemon) => Pokemon.parsePokemonFromPokeapi(pokemon))
         );
     }
 
     public getMultiplePokemonByName(names: string[]): Observable<Pokemon.IPokemon[]> {
         return from(names).pipe(
-            mergeMap((name: string) => {
-                return this.getPokemonByName(name).pipe(
-                    map((pokemon: Pokeapi.IPokemon) => {
-                        return Pokemon.parsePokemonFromPokeapi(pokemon);
-                    })
-                );
-            }),
+            mergeMap((name: string) => this.getPokemonByName(name).pipe(
+                map((pokemon: Pokeapi.IPokemon) => Pokemon.parsePokemonFromPokeapi(pokemon))
+            )),
             toArray(),
-            map((pokemon: Pokemon.IPokemon[]) => {
-                return Pokemon.sortPokemonById(pokemon);
-            })
+            map((pokemon: Pokemon.IPokemon[]) => Pokemon.sortPokemonById(pokemon))
         );
     }
 

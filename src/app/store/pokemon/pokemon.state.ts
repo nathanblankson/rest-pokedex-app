@@ -51,9 +51,8 @@ export class PokemonState {
                 .slice(start, end);
 
             const matchesInDetailsList = pokemonState.pokemonDetailsList
-                .filter((pokemon: Pokemon.IPokemon) => {
-                    return matchesInResourceList.some((resource: Pokeapi.INamedApiResource) => resource.name === pokemon.name);
-                });
+                .filter((pokemon: Pokemon.IPokemon) =>
+                    matchesInResourceList.some((resource: Pokeapi.INamedApiResource) => resource.name === pokemon.name));
 
             return matchesInDetailsList;
         });
