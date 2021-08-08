@@ -14,7 +14,7 @@ import { IFullPageMessage } from '@core/interfaces/full-page-message.interface';
 export class WishlistComponent implements OnInit {
 
     @Select(WishlistState.wishlistedPokemon)
-    public wishlistedPokemon$: Observable<Pokemon.IPokemon[]>
+    public wishlistedPokemon$: Observable<Pokemon.IPokemon[]>;
 
     public noWishlistedPokemonMessage: IFullPageMessage = {
         image: {

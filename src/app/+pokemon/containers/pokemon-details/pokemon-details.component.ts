@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewportScroller } from '@angular/common';
-import { ActivatedRoute, Router, Scroll } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { Pokemon } from '@core/models/pokemon.model';
-import { filter } from 'rxjs/operators';
 
 @Component({
     selector: 'app-pokemon-details',
@@ -17,7 +15,7 @@ export class PokemonDetailsComponent implements OnInit {
     constructor(private route: ActivatedRoute) { }
 
     public ngOnInit(): void {
-        this.pokemon = this.route.snapshot.data.pokemon
+        this.pokemon = this.route.snapshot.data.pokemon;
     }
 
     public onClickAnchor(id: string) {

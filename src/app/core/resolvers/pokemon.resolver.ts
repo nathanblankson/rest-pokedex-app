@@ -26,7 +26,7 @@ export class PokemonResolver implements Resolve<Observable<Pokemon.IPokemon>> {
                     }),
                     filter((pokemon: Pokemon.IPokemon) => pokemon !== null && pokemon !== undefined),
                     take(1)
-                )
+                );
         } else {
             throwError(this._handleError());
         }

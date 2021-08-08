@@ -13,7 +13,7 @@ export namespace Pokemon {
     export function sortPokemonById(pokemon: Pokemon.IPokemon[]): Pokemon.IPokemon[] {
         return pokemon.sort((pokemonA: Pokemon.IPokemon, pokemonB: Pokemon.IPokemon) => {
             const pokemonAId = pokemonA.id;
-            const pokemonBId = pokemonB.id
+            const pokemonBId = pokemonB.id;
             return (pokemonAId < pokemonBId) ? -1 : (pokemonAId > pokemonBId) ? 1 : 0;
         });
     }

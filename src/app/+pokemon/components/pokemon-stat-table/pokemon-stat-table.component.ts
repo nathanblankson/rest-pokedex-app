@@ -10,7 +10,7 @@ import { Pokeapi } from '@core/models/pokeapi.model';
 export class PokemonStatTableComponent implements OnInit {
 
     @Input()
-    public pokemonStats: Pokeapi.IPokemonStat[]
+    public pokemonStats: Pokeapi.IPokemonStat[];
 
     constructor() { }
 

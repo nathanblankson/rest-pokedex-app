@@ -18,14 +18,14 @@ import {
 } from './pokemon.actions';
 
 export interface IPokemonStateModel {
-    pokemonResourceList: Pokeapi.INamedAPIResourceList,
-    pokemonDetailsList: Pokemon.IPokemon[]
+    pokemonResourceList: Pokeapi.INamedAPIResourceList;
+    pokemonDetailsList: Pokemon.IPokemon[];
 }
 
 const defaultPokemonState: IPokemonStateModel = {
     pokemonResourceList: null,
     pokemonDetailsList: []
-}
+};
 
 const error: string = 'Ooops! Looks like something went wrong...';
 
@@ -52,7 +52,7 @@ export class PokemonState {
 
             const matchesInDetailsList = pokemonState.pokemonDetailsList
                 .filter((pokemon: Pokemon.IPokemon) => {
-                    return matchesInResourceList.some((resource: Pokeapi.INamedApiResource) => resource.name === pokemon.name)
+                    return matchesInResourceList.some((resource: Pokeapi.INamedApiResource) => resource.name === pokemon.name);
                 });
 
             return matchesInDetailsList;
@@ -73,7 +73,7 @@ export class PokemonState {
             const adaptedName = name.toLowerCase();
 
             const matchInResourceList = pokemonState.pokemonResourceList.results
-                .find((resource: Pokeapi.INamedApiResource) => resource.name === adaptedName)
+                .find((resource: Pokeapi.INamedApiResource) => resource.name === adaptedName);
 
             const matchInDetailsList = pokemonState.pokemonDetailsList
                 .find((pokemon: Pokemon.IPokemon) => pokemon.name === matchInResourceList.name);

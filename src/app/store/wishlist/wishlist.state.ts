@@ -6,12 +6,12 @@ import { Pokemon } from '@core/models/pokemon.model';
 import { AddPokemonToWishlist, RemovePokemonFromWishlist } from './wishlist.actions';
 
 export interface IWishlistStateModel {
-    pokemons: Pokemon.IPokemon[]
+    pokemons: Pokemon.IPokemon[];
 }
 
 const defaultWishlistState: IWishlistStateModel = {
     pokemons: []
-}
+};
 
 @State<IWishlistStateModel>({
     name: 'Wishlist',

@@ -37,6 +37,9 @@
                         "style": "camelCase"
                     }
                 ],
+                "@typescript-eslint/semi": [
+                    "error"
+                ],
                 "dot-notation": "error",
                 "indent": "error",
                 "no-empty-function": "off",
@@ -51,7 +54,7 @@
                         "allowTemplateLiterals": false
                     }
                 ],
-                "semi": "error"
+                "semi": "off" // use @typescript-eslint/semi
             }
         },
         {
