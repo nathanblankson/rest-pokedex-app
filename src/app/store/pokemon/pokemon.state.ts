@@ -82,6 +82,14 @@ export class PokemonState {
         });
     }
 
+    public static getPokemonResourceByName(name: string) {
+        return createSelector([PokemonState], (pokemonState: IPokemonStateModel): Pokeapi.INamedApiResource => {
+            const adaptedName = name.toLowerCase();
+            return pokemonState.pokemonResourceList.results.
+                find((resource: Pokeapi.INamedApiResource) => resource.name === adaptedName);
+        });
+    }
+
     constructor(private pokeapiService: PokeapiService) { }
 
     @Action(GetPokemonResourceList)
