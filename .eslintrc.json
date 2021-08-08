@@ -37,13 +37,17 @@
                         "style": "camelCase"
                     }
                 ],
+                "@typescript-eslint/no-inferrable-types": "off",
+                "@typescript-eslint/no-shadow": [
+                    "error"
+                ],
                 "@typescript-eslint/semi": [
                     "error"
                 ],
                 "dot-notation": "error",
                 "indent": "error",
                 "no-empty-function": "off",
-                "no-shadow": "error",
+                "no-shadow": "off", // use @typescript-eslint/no-shadow
                 "no-unused-expressions": "error",
                 "no-use-before-define": "off",
                 "quotes": [
