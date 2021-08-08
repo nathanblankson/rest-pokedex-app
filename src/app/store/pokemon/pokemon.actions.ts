@@ -33,7 +33,7 @@ export class GetPokemonDetailsFail {
 
 export class GetPokemonDetailsList {
     public static readonly type: string = '[ Pokemon ] Get Pokemon Details List';
-    constructor(public payload: { searchQuery: string, params: { start: number, end: number, pageSize: number } }) { };
+    constructor(public payload: { searchQuery: string; params: { start: number; end: number; pageSize: number } }) { };
 }
 
 export class GetPokemonDetailsListSuccess {

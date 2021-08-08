@@ -41,7 +41,7 @@ export class PokemonState {
         return state.pokemonResourceList;
     }
 
-    public static filteredPokemon(searchQuery: string, params: { start: number, end: number }) {
+    public static filteredPokemon(searchQuery: string, params: { start: number; end: number }) {
         return createSelector([PokemonState], (pokemonState: IPokemonStateModel): Pokemon.IPokemon[] => {
             const { start, end } = params;
             const adaptedSearchQuery = searchQuery.toLowerCase();
