@@ -44,6 +44,7 @@
                 "@typescript-eslint/semi": [
                     "error"
                 ],
+                "prefer-arrow/prefer-arrow-functions": "off",
                 "dot-notation": "error",
                 "indent": "error",
                 "no-empty-function": "off",
