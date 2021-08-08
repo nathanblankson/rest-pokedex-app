@@ -51,7 +51,8 @@ export class PokemonComponent implements OnInit {
         const end = (this.currentPageIndex + 1) * this.pageSize;
 
         this.store.dispatch(
-            new GetPokemonDetailsList({ searchQuery: this.searchQuery, params: { start, end, pageSize: this.pageSize } })).subscribe(() => {
+            new GetPokemonDetailsList({ searchQuery: this.searchQuery, params: { start, end, pageSize: this.pageSize } }))
+            .subscribe(() => {
                 this.filteredPokemon$ = this.store.select(
                     PokemonState.filteredPokemon(this.searchQuery, { start, end })
                 );
