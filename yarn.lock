@@ -1553,6 +1553,13 @@
   dependencies:
     tslib "^1.9.0"
 
+"@ngxs/router-plugin@^3.7.2":
+  version "3.7.2"
+  resolved "https://nexus.sourcebreaker.dev/repository/npm/@ngxs/router-plugin/-/router-plugin-3.7.2.tgz#7ad0e371966a184e53ece1cb37b06b2012e1ddee"
+  integrity sha512-PWhRJahd4G94JCfNSgsn6M0HNshMI7W+UpCYILkh5DQTlyxeUGtMA7QR0kIHA5h58y8lYNecA33loL84wGPkNQ==
+  dependencies:
+    tslib "^1.9.0"
+
 "@ngxs/storage-plugin@^3.7.2":
   version "3.7.2"
   resolved "https://nexus.sourcebreaker.dev/repository/npm/@ngxs/storage-plugin/-/storage-plugin-3.7.2.tgz#b04ce7d7a4bfa7ab6b453af9a1198acf886b8630"
