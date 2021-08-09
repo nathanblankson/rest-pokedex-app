@@ -1,15 +1,13 @@
-<app-nav-wrapper>
-    <ng-container *ngIf="(wishlistedPokemon$ | async) as wishlistedPokemon">
-        <div *ngIf="wishlistedPokemon.length > 0; else noWishlistedPokemon" class="container">
-            <div class="pokemon-list">
-                <app-pokemon-list-item
-                    *ngFor="let pokemon of wishlistedPokemon"
-                    [pokemon]="pokemon">
-                </app-pokemon-list-item>
-            </div>
+<ng-container *ngIf="(wishlistedPokemon$ | async) as wishlistedPokemon">
+    <div *ngIf="wishlistedPokemon.length > 0; else noWishlistedPokemon" class="container">
+        <div class="pokemon-list">
+            <app-pokemon-list-item
+                *ngFor="let pokemon of wishlistedPokemon"
+                [pokemon]="pokemon">
+            </app-pokemon-list-item>
         </div>
-    </ng-container>
-</app-nav-wrapper>
+    </div>
+</ng-container>
 
 <ng-template #noWishlistedPokemon>
     <app-full-page-message [messageData]="noWishlistedPokemonMessage">

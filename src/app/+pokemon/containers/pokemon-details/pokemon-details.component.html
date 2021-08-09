@@ -1,54 +1,52 @@
-<app-nav-wrapper>
-    <div *ngIf="pokemon" class="container">
-        <!-- Top -->
-        <div class="pokemon">
-            <div class="pokemon__image">
-                <img class="image"
-                    [src]="pokemon.image_url"
-                    [alt]="pokemon.name | titlecase">
-                <img class="stamp" [src]="'/assets/images/pokeball.svg'">
-            </div>
-            <div class="pokemon__info">
-                <h2 class="name">{{ pokemon.name | titlecase }}</h2>
-                <h1 class="id">{{ '#' + pokemon.id }}</h1>
-            </div>
+<div *ngIf="pokemon" class="container">
+    <!-- Top -->
+    <div class="pokemon">
+        <div class="pokemon__image">
+            <img class="image"
+                [src]="pokemon.image_url"
+                [alt]="pokemon.name | titlecase">
+            <img class="stamp" [src]="'/assets/images/pokeball.svg'">
         </div>
-
-        <!-- Table of contents -->
-        <div class="table-of-contents">
-            <p class="table-of-contents__heading">Table of contents</p>
-            <ul class="table-of-contents__list">
-                <li class="list-item">
-                    <a (click)="onClickAnchor('pokemon-type')">Pokémon type</a>
-                </li>
-                <li class="list-item">
-                    <a (click)="onClickAnchor('pokemon-stats')">Pokémon stats</a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Info -->
-        <div class="pokemon-details">
-            <div class="pokemon-details__left-column">
-                <!-- Types -->
-                <app-pokemon-detail-card id="pokemon-type" class="pokemon-type" panelTitle="Pokémon type">
-                    <div class="pokemon-type__pills flex-row">
-                        <app-pokemon-type-pill
-                            *ngFor="let type of pokemon.types"
-                            [type]="type">
-                        </app-pokemon-type-pill>
-                    </div>
-                </app-pokemon-detail-card>
-            </div>
-
-            <div class="pokemon-details__right-column">
-                <!-- Base Stats -->
-                <app-pokemon-detail-card id="pokemon-stats" class="pokemon-stats" panelTitle="Pokémon stats">
-                    <div class="pokemon-stats__bars">
-                        <app-pokemon-stat-table [pokemonStats]="pokemon.stats"></app-pokemon-stat-table>
-                    </div>
-                </app-pokemon-detail-card>
-            </div>
+        <div class="pokemon__info">
+            <h2 class="name">{{ pokemon.name | titlecase }}</h2>
+            <h1 class="id">{{ '#' + pokemon.id }}</h1>
         </div>
     </div>
-</app-nav-wrapper>
+
+    <!-- Table of contents -->
+    <div class="table-of-contents">
+        <p class="table-of-contents__heading">Table of contents</p>
+        <ul class="table-of-contents__list">
+            <li class="list-item">
+                <a (click)="onClickAnchor('pokemon-type')">Pokémon type</a>
+            </li>
+            <li class="list-item">
+                <a (click)="onClickAnchor('pokemon-stats')">Pokémon stats</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Info -->
+    <div class="pokemon-details">
+        <div class="pokemon-details__left-column">
+            <!-- Types -->
+            <app-pokemon-detail-card id="pokemon-type" class="pokemon-type" panelTitle="Pokémon type">
+                <div class="pokemon-type__pills flex-row">
+                    <app-pokemon-type-pill
+                        *ngFor="let type of pokemon.types"
+                        [type]="type">
+                    </app-pokemon-type-pill>
+                </div>
+            </app-pokemon-detail-card>
+        </div>
+
+        <div class="pokemon-details__right-column">
+            <!-- Base Stats -->
+            <app-pokemon-detail-card id="pokemon-stats" class="pokemon-stats" panelTitle="Pokémon stats">
+                <div class="pokemon-stats__bars">
+                    <app-pokemon-stat-table [pokemonStats]="pokemon.stats"></app-pokemon-stat-table>
+                </div>
+            </app-pokemon-detail-card>
+        </div>
+    </div>
+</div>

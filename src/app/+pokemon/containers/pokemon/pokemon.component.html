@@ -1,33 +1,31 @@
-<app-nav-wrapper>
-    <div class="container">
-        <!-- Pokemon search -->
-        <mat-form-field class="pokemon-search">
-            <input
-                type="text"
-                matInput
-                placeholder="Search for a Pokémon e.g. Charizard"
-                debounce="2000"
-                [(ngModel)]="searchQuery"
-                (onDebounce)="onSearchFilterChange($event)" />
-        </mat-form-field>
+<div class="container">
+    <!-- Pokemon search -->
+    <mat-form-field class="pokemon-search">
+        <input
+            type="text"
+            matInput
+            placeholder="Search for a Pokémon e.g. Charizard"
+            debounce="2000"
+            [(ngModel)]="searchQuery"
+            (onDebounce)="onSearchFilterChange($event)" />
+    </mat-form-field>
 
-        <!-- Pokemon List -->
-        <ng-container *ngIf="(filteredPokemon$ | async) as filteredPokemon">
-            <div class="pokemon-list">
-                <app-pokemon-list-item
-                    *ngFor="let pokemon of filteredPokemon"
-                    [pokemon]="pokemon">
-                </app-pokemon-list-item>
-            </div>
+    <!-- Pokemon List -->
+    <ng-container *ngIf="(filteredPokemon$ | async) as filteredPokemon">
+        <div class="pokemon-list">
+            <app-pokemon-list-item
+                *ngFor="let pokemon of filteredPokemon"
+                [pokemon]="pokemon">
+            </app-pokemon-list-item>
+        </div>
 
-            <mat-paginator
-                #paginator
-                showFirstLastButtons
-                [length]="filteredPokemonCount$ | async"
-                [pageSize]="pageSize"
-                [pageSizeOptions]="[1, 2, 3, 4, 5]"
-                (page)="pageEvent = $event; onPaginateChange($event)">
-            </mat-paginator>
-        </ng-container>
-    </div>
-</app-nav-wrapper>
+        <mat-paginator
+            #paginator
+            showFirstLastButtons
+            [length]="filteredPokemonCount$ | async"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="[1, 2, 3, 4, 5]"
+            (page)="pageEvent = $event; onPaginateChange($event)">
+        </mat-paginator>
+    </ng-container>
+</div>
