@@ -30,7 +30,7 @@
     <div class="pokemon-details">
         <div class="pokemon-details__left-column">
             <!-- Types -->
-            <app-pokemon-detail-card id="pokemon-type" class="pokemon-type" panelTitle="Pokémon type">
+            <app-pokemon-detail-card id="pokemon-type" class="pokemon-type" [data]="pokemonTypeCard">
                 <div class="pokemon-type__pills flex-row">
                     <app-pokemon-type-pill
                         *ngFor="let type of pokemon.types"
@@ -42,7 +42,7 @@
 
         <div class="pokemon-details__right-column">
             <!-- Base Stats -->
-            <app-pokemon-detail-card id="pokemon-stats" class="pokemon-stats" panelTitle="Pokémon stats">
+            <app-pokemon-detail-card id="pokemon-stats" class="pokemon-stats" [data]="pokemonStatsCard">
                 <div class="pokemon-stats__bars">
                     <app-pokemon-stat-table [pokemonStats]="pokemon.stats"></app-pokemon-stat-table>
                 </div>

@@ -1,5 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+export interface PokemonDetailCard {
+    borderColor?: string;
+    isExpanded?: boolean;
+    isToggleHidden?: boolean;
+    panelTitle?: string;
+}
+
+const defaultData: PokemonDetailCard = {
+    borderColor: '',
+    isExpanded: false,
+    isToggleHidden: false,
+    panelTitle: ''
+};
+
 @Component({
     selector: 'app-pokemon-detail-card',
     templateUrl: './pokemon-detail-card.component.html',
@@ -8,20 +22,10 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PokemonDetailCardComponent implements OnInit {
 
     @Input()
-    public isExpanded: boolean = true;
+    public data: PokemonDetailCard = defaultData;
 
-    @Input()
-    public panelTitle: string;
+    public constructor() { }
 
-    @Input()
-    public isToggleHidden: boolean = false;
-
-    @Input()
-    public hasBorder: boolean = true;
-
-    constructor() { }
-
-    public ngOnInit(): void {
-    }
+    public ngOnInit(): void { }
 
 }

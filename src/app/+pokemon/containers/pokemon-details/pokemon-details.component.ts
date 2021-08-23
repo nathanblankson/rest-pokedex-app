@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Pokemon } from '@core/models/pokemon.model';
+import { PokemonDetailCard } from '../../components/pokemon-detail-card/pokemon-detail-card.component';
 
 @Component({
     selector: 'app-pokemon-details',
@@ -10,9 +11,20 @@ import { Pokemon } from '@core/models/pokemon.model';
 })
 export class PokemonDetailsComponent implements OnInit {
 
-    pokemon: Pokemon.IPokemon = null;
+    public pokemon: Pokemon.IPokemon = null;
 
-    constructor(private route: ActivatedRoute) { }
+    public pokemonTypeCard: PokemonDetailCard = {
+        borderColor: 'C22E28',
+        isExpanded: true,
+        panelTitle: 'Pokémon type'
+    };
+    public pokemonStatsCard: PokemonDetailCard = {
+        borderColor: '6390F0',
+        isExpanded: true,
+        panelTitle: 'Pokémon stats'
+    };
+
+    public constructor(private route: ActivatedRoute) { }
 
     public ngOnInit(): void {
         this.pokemon = this.route.snapshot.data.pokemon;

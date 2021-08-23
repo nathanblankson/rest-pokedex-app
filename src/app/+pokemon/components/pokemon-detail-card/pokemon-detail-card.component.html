@@ -2,14 +2,14 @@
 
     <mat-expansion-panel
         class="pokemon-detail-card"
-        [expanded]="isExpanded"
         togglePosition="before"
-        [hideToggle]="isToggleHidden"
-        [ngClass]="{'pokemon-detail-card--has-border': hasBorder}">
+        [expanded]="data.isExpanded"
+        [hideToggle]="data.isToggleHidden"
+        [style.borderTop]="'5px solid #' + data.borderColor">
 
         <mat-expansion-panel-header class="pokemon-detail-card__header">
-            <mat-panel-title>
-                <h3 class="title">{{ panelTitle }}</h3>
+            <mat-panel-title *ngIf="data.panelTitle">
+                <h3 class="title">{{ data.panelTitle }}</h3>
             </mat-panel-title>
         </mat-expansion-panel-header>
 
