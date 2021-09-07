@@ -23,7 +23,7 @@ export class PokemonComponent implements OnInit {
     public searchQueryChange: Subject<string> = new Subject<string>();
 
     public pageEvent: PageEvent;
-    public pageSize: number = 1;
+    public pageSize: number = 10;
     public currentPageIndex: number = 0;
 
     constructor(private store: Store) {

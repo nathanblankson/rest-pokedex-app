@@ -185,17 +185,12 @@ export class PokemonState {
             .filter((pokemon: Pokemon.IPokemon) => pokemon.name.includes(adaptedSearchQuery));
 
         const missingFromDetailsList = matchesInResourceList
-            .filter(({ name: resourceName }) => !matchesInDetailsList
-                .some(({ name: pokemonName }) => resourceName === pokemonName))
+            .filter(({ name: resourceName }) => !matchesInDetailsList.some(({ name: pokemonName }) => resourceName === pokemonName))
             .map((resource: Pokeapi.INamedApiResource) => resource.name)
             .slice(0, pageSize);
 
         if (missingFromDetailsList.length === 0) {
             return true;
-        } else if (missingFromDetailsList.length > 3) {
-            // TODO: For practicing purposes only - we don't want to spam the API
-            console.log('Whoah there! We don\'t want to spam the FREE API now do we?\n Gonna stop you there bud.');
-            throw new Error('Too many requests to be made!');
         }
 
         return this.pokeapiService.getMultiplePokemonByName(missingFromDetailsList).pipe(

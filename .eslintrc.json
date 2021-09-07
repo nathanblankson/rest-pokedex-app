@@ -41,12 +41,22 @@
                 "@typescript-eslint/no-shadow": [
                     "error"
                 ],
+                "@typescript-eslint/no-namespace": "off",
                 "@typescript-eslint/semi": [
                     "error"
                 ],
+                "@typescript-eslint/member-ordering": "off",
+                "@typescript-eslint/naming-convention": "off",
                 "prefer-arrow/prefer-arrow-functions": "off",
                 "dot-notation": "error",
                 "indent": "error",
+                "max-len": [
+                    "error",
+                    {
+                        "ignorePattern": "^(import|export)",
+                        "code": 300
+                    }
+                ],
                 "no-empty-function": "off",
                 "no-shadow": "off", // use @typescript-eslint/no-shadow
                 "no-unused-expressions": "error",

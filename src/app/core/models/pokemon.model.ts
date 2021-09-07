@@ -6,7 +6,8 @@ export namespace Pokemon {
         const pokemonId = pokemonData.id;
         return {
             ...pokemonData,
-            image_url: `https://pokeres.bastionbot.org/images/pokemon/${pokemonId}.png`
+            // image_url: `https://pokeres.bastionbot.org/images/pokemon/${pokemonId}.png` // TODO: disabled for now, service appears to be down
+            image_url: null,
         };
     }
 

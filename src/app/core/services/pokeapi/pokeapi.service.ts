@@ -17,15 +17,6 @@ export class PokeapiService extends BaseHttp {
         super();
     }
 
-    public getPokemonResourceList(pageParams: Pokeapi.IPageParams): Observable<Pokeapi.INamedAPIResourceList> {
-        const limit = String(pageParams.limit);
-        const offset = String(pageParams.offset);
-        const params: HttpParams = new HttpParams()
-            .set('limit', limit)
-            .set('offset', offset);
-        return this.http.get<Pokeapi.INamedAPIResourceList>(PokeapiApiEndpoints.pokemon, { params });
-    }
-
     public getPokemonByName(name: string): Observable<Pokeapi.IPokemon> {
         return this.http.get<Pokeapi.IPokemon>(`${PokeapiApiEndpoints.pokemon}/${name}`);
     }
@@ -49,5 +40,16 @@ export class PokeapiService extends BaseHttp {
             map((pokemon: Pokemon.IPokemon[]) => Pokemon.sortPokemonById(pokemon))
         );
     }
+
+    public getPokemonResourceList(pageParams: Pokeapi.IPageParams): Observable<Pokeapi.INamedAPIResourceList> {
+        const limit = String(pageParams.limit);
+        const offset = String(pageParams.offset);
+        const params: HttpParams = new HttpParams()
+            .set('limit', limit)
+            .set('offset', offset);
+        return this.http.get<Pokeapi.INamedAPIResourceList>(PokeapiApiEndpoints.pokemon, { params });
+    }
+
+
 
 }
