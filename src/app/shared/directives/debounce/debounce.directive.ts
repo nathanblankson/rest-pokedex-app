@@ -14,27 +14,26 @@ export class DebounceDirective implements OnInit, OnDestroy {
     @Input('debounce')
     public debounceTime: number = 5000;
 
-    private isFirstChange: boolean = true;
-    private subscription: Subscription;
+    private _isFirstChange: boolean = true;
+    private _subscription: Subscription;
 
     constructor(public model: NgControl) { }
 
-    ngOnInit() {
-        this.subscription =
+    public ngOnInit(): void {
+        this._subscription =
             this.model.valueChanges.pipe(
                 debounceTime(this.debounceTime),
                 distinctUntilChanged()
             ).subscribe(modelValue => {
-                if (this.isFirstChange) {
-                    this.isFirstChange = false;
+                if (this._isFirstChange) {
+                    this._isFirstChange = false;
                 } else {
                     this.onDebounce.emit(modelValue);
                 }
             });
     }
 
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
+    public ngOnDestroy(): void {
+        this._subscription.unsubscribe();
     }
-
 }

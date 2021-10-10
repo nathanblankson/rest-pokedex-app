@@ -17,22 +17,21 @@ export class PokemonListItemComponent implements OnInit {
 
     public isWishlisted$: Observable<boolean>;
 
-    constructor(private store: Store) { }
+    public constructor(private _store: Store) { }
 
     public ngOnInit(): void {
-        this.initIsWishlist();
+        this._initIsWishlist();
     }
 
     public isWishlistedEmitted(isWishlisted: boolean): void {
         if (isWishlisted) {
-            this.store.dispatch(new RemovePokemonFromWishlist({ id: this.pokemon.id }));
+            this._store.dispatch(new RemovePokemonFromWishlist({ id: this.pokemon.id }));
         } else {
-            this.store.dispatch(new AddPokemonToWishlist(this.pokemon));
+            this._store.dispatch(new AddPokemonToWishlist(this.pokemon));
         }
     }
 
-    private initIsWishlist(): void {
-        this.isWishlisted$ = this.store.select(WishlistState.isPokemonWishlisted(this.pokemon.id));
+    private _initIsWishlist(): void {
+        this.isWishlisted$ = this._store.select(WishlistState.isPokemonWishlisted(this.pokemon.id));
     }
-
 }

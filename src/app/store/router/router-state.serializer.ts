@@ -25,5 +25,4 @@ export class CustomRouterStateSerializer implements RouterStateSerializer<Router
 
         return { url, params, queryParams, data };
     }
-
 }

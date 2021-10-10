@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
-import { concatMap, map, mergeMap, toArray } from 'rxjs/operators';
+import { map, mergeMap, toArray } from 'rxjs/operators';
 
 import { BaseHttp } from '../abstract/base-http.class';
 import { Pokeapi } from '@core/models/pokeapi.model';
@@ -49,7 +49,4 @@ export class PokeapiService extends BaseHttp {
             .set('offset', offset);
         return this.http.get<Pokeapi.INamedAPIResourceList>(PokeapiApiEndpoints.pokemon, { params });
     }
-
-
-
 }

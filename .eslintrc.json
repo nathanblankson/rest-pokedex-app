@@ -59,6 +59,7 @@
                 ],
                 "no-empty-function": "off",
                 "no-shadow": "off", // use @typescript-eslint/no-shadow
+                "no-underscore-dangle": "off",
                 "no-unused-expressions": "error",
                 "no-use-before-define": "off",
                 "quotes": [

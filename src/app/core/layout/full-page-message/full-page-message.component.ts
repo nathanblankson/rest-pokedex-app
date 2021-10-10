@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { IFullPageMessage } from '@core/interfaces/full-page-message.interface';
 
@@ -7,13 +7,7 @@ import { IFullPageMessage } from '@core/interfaces/full-page-message.interface';
     templateUrl: './full-page-message.component.html',
     styleUrls: ['./full-page-message.component.scss']
 })
-export class FullPageMessageComponent implements OnInit {
-
+export class FullPageMessageComponent {
     @Input()
     public messageData: IFullPageMessage;
-
-    public constructor() { }
-
-    public ngOnInit(): void { }
-
 }

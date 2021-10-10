@@ -33,5 +33,4 @@ export namespace Pokemon {
         meta: IMeta;
         pokemons: IPokemon[] | null;
     }
-
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 export interface PokemonDetailCard {
     borderColor?: string;
@@ -19,13 +19,7 @@ const defaultData: PokemonDetailCard = {
     templateUrl: './pokemon-detail-card.component.html',
     styleUrls: ['./pokemon-detail-card.component.scss']
 })
-export class PokemonDetailCardComponent implements OnInit {
-
+export class PokemonDetailCardComponent {
     @Input()
     public data: PokemonDetailCard = defaultData;
-
-    public constructor() { }
-
-    public ngOnInit(): void { }
-
 }

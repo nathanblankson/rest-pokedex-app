@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { NavLinks } from '@core/config/nav-links.config';
 import { INavLink } from '@core/interfaces/nav-links.interface';
@@ -8,13 +8,6 @@ import { INavLink } from '@core/interfaces/nav-links.interface';
     templateUrl: './nav-links.component.html',
     styleUrls: ['./nav-links.component.scss']
 })
-export class NavLinksComponent implements OnInit {
-
+export class NavLinksComponent {
     public navLinks: INavLink[] = NavLinks;
-
-    constructor() { }
-
-    public ngOnInit(): void {
-    }
-
 }

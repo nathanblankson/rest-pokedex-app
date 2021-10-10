@@ -26,5 +26,4 @@ export class RouterSelectors {
     static url({ state }: RouterStateOuterModel<RouterStateModel>) {
         return state.url;
     }
-
 }

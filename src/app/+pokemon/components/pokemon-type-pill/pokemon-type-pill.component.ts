@@ -34,15 +34,12 @@ export class PokemonTypePillComponent implements OnInit {
         )
     ];
 
-    constructor() { }
-
     public ngOnInit(): void {
-        this.initTypeEffectiveness();
+        this._initTypeEffectiveness();
     }
 
-    private initTypeEffectiveness(): void {
+    private _initTypeEffectiveness(): void {
         const typeName = this.type.type.name;
         this.typeEffectiveness = pokemonTypeEffectiveness.get(typeName);
     }
-
 }

@@ -181,5 +181,4 @@ export namespace Pokeapi {
         slot: number;
         type: INamedApiResource;
     }
-
 }

@@ -220,5 +220,4 @@ export class PokemonState {
     ) {
         console.log(payload);
     }
-
 }

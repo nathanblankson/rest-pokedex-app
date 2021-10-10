@@ -24,18 +24,17 @@ export class PokemonDetailsComponent implements OnInit {
         panelTitle: 'Pokémon stats'
     };
 
-    public constructor(private route: ActivatedRoute) { }
+    public constructor(private _route: ActivatedRoute) { }
 
     public ngOnInit(): void {
-        this.pokemon = this.route.snapshot.data.pokemon;
+        this.pokemon = this._route.snapshot.data.pokemon;
     }
 
-    public onClickAnchor(id: string) {
+    public onClickAnchor(id: string): void {
         const element = document.getElementById(id);
         if (!element) {
             return;
         }
         element.scrollIntoView();
     }
-
 }

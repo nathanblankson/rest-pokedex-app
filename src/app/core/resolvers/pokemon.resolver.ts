@@ -10,31 +10,31 @@ import { Pokemon } from '@core/models/pokemon.model';
 @Injectable()
 export class PokemonResolver implements Resolve<Observable<Pokemon.IPokemon>> {
 
-    constructor(private store: Store) { }
+    constructor(private _store: Store) { }
 
     public resolve(route: ActivatedRouteSnapshot): Observable<Pokemon.IPokemon> {
         const adaptedName = route.paramMap.get('name').toLowerCase();
-        const resource = this.store.selectSnapshot(PokemonState.getPokemonResourceByName(adaptedName));
+        const resource = this._store.selectSnapshot(PokemonState.getPokemonResourceByName(adaptedName));
 
         if (!!resource) {
-            return this.store.select(PokemonState.getPokemonDetailsByName(adaptedName))
+            return this._store.select(PokemonState.getPokemonDetailsByName(adaptedName))
                 .pipe(
                     tap((pokemon: Pokemon.IPokemon) => {
                         if (pokemon === null || pokemon === undefined) {
-                            this.store.dispatch(new GetPokemonDetails({ name: adaptedName }));
+                            this._store.dispatch(new GetPokemonDetails({ name: adaptedName }));
                         }
                     }),
                     filter((pokemon: Pokemon.IPokemon) => pokemon !== null && pokemon !== undefined),
                     take(1)
                 );
         } else {
-            throwError(this.handleError());
+            throwError(this._handleError());
         }
     }
 
-    private handleError(): boolean {
-        // this.store.dispatch(new HideFullScreenLoading()); TODO: add full screen loader and hide
-        // this.store.dispatch(new Navigate({ command: ['/error'] })); TODO: create error page and navigate
+    private _handleError(): boolean {
+        // this._store.dispatch(new HideFullScreenLoading()); TODO: add full screen loader and hide
+        // this._store.dispatch(new Navigate({ command: ['/error'] })); TODO: create error page and navigate
         return false;
     }
 

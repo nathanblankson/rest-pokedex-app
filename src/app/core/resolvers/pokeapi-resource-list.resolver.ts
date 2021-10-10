@@ -10,15 +10,15 @@ import { Pokeapi } from '@core/models/pokeapi.model';
 @Injectable()
 export class PokeapiResourceListResolver implements Resolve<Observable<Pokeapi.INamedAPIResourceList>> {
 
-    constructor(private store: Store) { }
+    constructor(private _store: Store) { }
 
     public resolve(): Observable<Pokeapi.INamedAPIResourceList> {
-        return this.store.select(PokemonState.pokemonResourceList)
+        return this._store.select(PokemonState.pokemonResourceList)
             .pipe(
                 tap((pokemonResourceList) => {
                     if (pokemonResourceList === null || pokemonResourceList === undefined) {
                         const params: Pokeapi.IPageParams = { limit: 10000, offset: 0 };
-                        this.store.dispatch(new GetPokemonResourceList(params));
+                        this._store.dispatch(new GetPokemonResourceList(params));
                     }
                 }),
                 filter((pokemonResourceList) => pokemonResourceList !== null && pokemonResourceList !== undefined),

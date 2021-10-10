@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { interval } from 'rxjs/internal/observable/interval';
 
 import { Pokeapi } from '@core/models/pokeapi.model';
-import { map, takeUntil, takeWhile, tap, throttleTime } from 'rxjs/operators';
+import { takeWhile, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-pokemon-stat-bar',
@@ -20,25 +20,22 @@ export class PokemonStatBarComponent implements OnInit {
 
     public currentProgress: number = 0;
 
-    private targetProgress: number;
-
-    constructor() { }
+    private _targetProgress: number;
 
     public ngOnInit(): void {
-        this.initProgressBar();
+        this._initProgressBar();
     }
 
-    private initProgressBar(): void {
-        this.targetProgress = this.pokemonStat.base_stat;
+    private _initProgressBar(): void {
+        this._targetProgress = this.pokemonStat.base_stat;
 
         if (!this.shouldAnimateProgressBar) {
-            this.currentProgress = this.targetProgress;
+            this.currentProgress = this._targetProgress;
         } else {
             interval(this.timeToFillProgress).pipe(
-                takeWhile(() => this.currentProgress < this.targetProgress),
+                takeWhile(() => this.currentProgress < this._targetProgress),
                 tap(() => this.currentProgress++)
             ).subscribe();
         }
     }
-
 }

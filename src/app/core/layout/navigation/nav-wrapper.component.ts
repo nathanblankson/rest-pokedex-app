@@ -1,6 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ViewChild } from '@angular/core';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
@@ -8,30 +8,29 @@ import { MatSidenav } from '@angular/material/sidenav';
     templateUrl: './nav-wrapper.component.html',
     styleUrls: ['./nav-wrapper.component.scss']
 })
-export class NavWrapperComponent implements OnInit, OnDestroy {
+export class NavWrapperComponent implements OnDestroy {
 
     @ViewChild('sidenav')
     public sidenav: MatSidenav;
 
     public mobileQuery: MediaQueryList;
 
-    private mobileQueryListener: () => void;
+    private _mobileQueryListener: () => void;
 
-    constructor(private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher) {
-        this.mobileQuery = media.matchMedia('(max-width: 600px)');
-        this.mobileQueryListener = () => changeDetectorRef.detectChanges();
-        this.mobileQuery.addListener(this.mobileQueryListener);
+    public constructor(
+        private _changeDetectorRef: ChangeDetectorRef,
+        private _media: MediaMatcher
+    ) {
+        this.mobileQuery = _media.matchMedia('(max-width: 600px)');
+        this._mobileQueryListener = () => _changeDetectorRef.detectChanges();
+        this.mobileQuery.addListener(this._mobileQueryListener);
     }
 
-    public ngOnInit(): void {
-    }
-
-    public toggleSidenavEmitted(e) {
+    public toggleSidenavEmitted(e): void {
         this.sidenav.toggle();
     }
 
-    ngOnDestroy(): void {
-        this.mobileQuery.removeListener(this.mobileQueryListener);
+    public ngOnDestroy(): void {
+        this.mobileQuery.removeListener(this._mobileQueryListener);
     }
-
 }

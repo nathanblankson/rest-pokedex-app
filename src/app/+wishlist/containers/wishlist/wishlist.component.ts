@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
@@ -11,7 +11,7 @@ import { IFullPageMessage } from '@core/interfaces/full-page-message.interface';
     templateUrl: './wishlist.component.html',
     styleUrls: ['./wishlist.component.scss']
 })
-export class WishlistComponent implements OnInit {
+export class WishlistComponent {
 
     @Select(WishlistState.wishlistedPokemon)
     public wishlistedPokemon$: Observable<Pokemon.IPokemon[]>;
@@ -24,9 +24,4 @@ export class WishlistComponent implements OnInit {
         heading: 'Looks like you have not wishlisted any Pokémon!',
         subheading: 'Well... what are you waiting for... gotta wishlist \'em all!'
     };
-
-    constructor() { }
-
-    public ngOnInit(): void { }
-
 }

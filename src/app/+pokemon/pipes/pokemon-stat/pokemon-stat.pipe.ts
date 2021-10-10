@@ -6,9 +6,7 @@ import { pokemonStatMap } from '@core/config/pokemon-stats.config';
     name: 'pokemonStat'
 })
 export class PokemonStatPipe implements PipeTransform {
-
-    transform(value: string, ...args: any[]): string | null {
-        return pokemonStatMap[value];
+    transform(value: string): string {
+        return pokemonStatMap[value] || value;
     }
-
 }

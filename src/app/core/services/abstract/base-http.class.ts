@@ -20,5 +20,4 @@ export abstract class BaseHttp {
 
         return transformedString;
     }
-
 }

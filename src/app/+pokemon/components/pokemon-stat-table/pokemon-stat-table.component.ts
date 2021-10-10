@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Pokeapi } from '@core/models/pokeapi.model';
 
@@ -7,13 +7,7 @@ import { Pokeapi } from '@core/models/pokeapi.model';
     templateUrl: './pokemon-stat-table.component.html',
     styleUrls: ['./pokemon-stat-table.component.scss']
 })
-export class PokemonStatTableComponent implements OnInit {
-
+export class PokemonStatTableComponent {
     @Input()
     public pokemonStats: Pokeapi.IPokemonStat[];
-
-    constructor() { }
-
-    public ngOnInit(): void { }
-
 }
